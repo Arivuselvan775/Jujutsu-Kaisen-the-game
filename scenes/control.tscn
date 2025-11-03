@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://dke11n1natt5h"]
 
-[ext_resource type="Script" uid="uid://codn2epgee73v" path="res://scenes/control.gd" id="1_5p55f"]
+[ext_resource type="Script" uid="uid://codn2epgee73v" path="res://scripts/control.gd" id="1_5p55f"]
 [ext_resource type="VideoStream" uid="uid://bnsuyg8ld1nsg" path="res://videos/From-KlickPin-CF-Pin-on-Simpan-Cepat.ogv" id="2_brbbq"]
 [ext_resource type="Texture2D" uid="uid://cfxwr4ik6kd5j" path="res://sprites/sukuna/mahoraga/parts/1762026177448.jpg" id="2_r67kn"]
 

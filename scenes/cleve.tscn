@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://dg5xyyvx2akxt"]
 
-[ext_resource type="Script" uid="uid://b6fsnw54rmbej" path="res://cleve.gd" id="1_aorwy"]
+[ext_resource type="Script" uid="uid://b6fsnw54rmbej" path="res://scripts/cleve.gd" id="1_aorwy"]
 [ext_resource type="Texture2D" uid="uid://h0oe00lcacyh" path="res://sprites/sukuna/cleve file/cleve.1.png" id="2_5bjwm"]
 [ext_resource type="Texture2D" uid="uid://c6u2dsmdi7i7e" path="res://sprites/sukuna/cleve file/cleve.2.png" id="3_oebcq"]
 [ext_resource type="Texture2D" uid="uid://bya8mrelgfv6b" path="res://sprites/sukuna/cleve file/cleve.3.png" id="4_1e8c4"]

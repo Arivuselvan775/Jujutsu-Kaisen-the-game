@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://cmfrnpw06dsy3"]
 
-[ext_resource type="Script" uid="uid://buv1wrqn1eyoq" path="res://scenes/mwheel.gd" id="1_38thh"]
+[ext_resource type="Script" uid="uid://buv1wrqn1eyoq" path="res://scripts/mwheel.gd" id="1_38thh"]
 [ext_resource type="Texture2D" uid="uid://boy6qsk0r1ge0" path="res://sprites/sukuna/kick/mohoraga head wheel.png" id="1_d5jhj"]
 [ext_resource type="AudioStream" uid="uid://b2svw78s88bpg" path="res://sounds/sukuna sounds/mahoraga-adapting-made-with-Voicemod.mp3" id="3_7vpck"]
 

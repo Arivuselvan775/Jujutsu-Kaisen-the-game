@@ -1,6 +1,6 @@
 [gd_scene load_steps=90 format=3 uid="uid://c6jgflkxkd45n"]
 
-[ext_resource type="Script" uid="uid://bi2813at4x4f0" path="res://scenes/enemy.gd" id="1_md0e3"]
+[ext_resource type="Script" uid="uid://bi2813at4x4f0" path="res://scripts/enemy.gd" id="1_md0e3"]
 [ext_resource type="Texture2D" uid="uid://dx7sqgsnh0u00" path="res://sprites/sukuna/cleve ani.png" id="2_ipns3"]
 [ext_resource type="Texture2D" uid="uid://d6qbvl1bbe57" path="res://sprites/sukuna/fuga.png" id="2_md484"]
 [ext_resource type="Texture2D" uid="uid://tbsx4oaau6s1" path="res://sprites/sukuna/hit.png" id="2_xwavj"]

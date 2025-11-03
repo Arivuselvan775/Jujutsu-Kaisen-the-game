@@ -1,6 +1,6 @@
 [gd_scene load_steps=22 format=4 uid="uid://bb7db62pn40ep"]
 
-[ext_resource type="Script" uid="uid://cjqr0brdonpef" path="res://scenes/game.gd" id="1_gee14"]
+[ext_resource type="Script" uid="uid://cjqr0brdonpef" path="res://scripts/game.gd" id="1_gee14"]
 [ext_resource type="PackedScene" uid="uid://dniqia0mj0pb8" path="res://scenes/main character.tscn" id="1_uwrxv"]
 [ext_resource type="Texture2D" uid="uid://dejvmbl0bn5il" path="res://sprites/Free/FreeAsset.png" id="5_u5sy4"]
 [ext_resource type="PackedScene" uid="uid://clsqcq8he0iun" path="res://scenes/killzone.tscn" id="6_p57ef"]

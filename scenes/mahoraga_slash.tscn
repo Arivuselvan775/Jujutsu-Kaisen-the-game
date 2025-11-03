@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://omhmweq6jxw1"]
 
-[ext_resource type="Script" uid="uid://db6rs114s3a8f" path="res://scenes/mahoraga_slash.gd" id="1_adxl0"]
+[ext_resource type="Script" uid="uid://db6rs114s3a8f" path="res://scripts/mahoraga_slash.gd" id="1_adxl0"]
 [ext_resource type="Texture2D" uid="uid://crnbfk0wm5s51" path="res://sprites/sukuna/mahoraga/attack 1.png" id="1_xwx13"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_adxl0"]
