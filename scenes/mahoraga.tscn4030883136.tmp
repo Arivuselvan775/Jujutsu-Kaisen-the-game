@@ -1,0 +1,74 @@
+[gd_scene load_steps=12 format=3 uid="uid://c2t2hog2umu4c"]
+
+[ext_resource type="Texture2D" uid="uid://nj8lm8ca6r6f" path="res://sprites/sukuna/mahoraga/summon.png" id="1_prmer"]
+[ext_resource type="Script" uid="uid://c8we20hs7ba47" path="res://scripts/mahoraga.gd" id="1_xl6n1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xl6n1"]
+size = Vector2(30, 79)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cnjn8"]
+atlas = ExtResource("1_prmer")
+region = Rect2(0, 0, 76, 140)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8m4cx"]
+atlas = ExtResource("1_prmer")
+region = Rect2(167, 0, 77, 140)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bnj4f"]
+atlas = ExtResource("1_prmer")
+region = Rect2(259, 0, 77, 140)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lqx6l"]
+atlas = ExtResource("1_prmer")
+region = Rect2(376, 0, 82, 140)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jgurc"]
+atlas = ExtResource("1_prmer")
+region = Rect2(465, 0, 82, 140)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h3stn"]
+atlas = ExtResource("1_prmer")
+region = Rect2(564, 0, 90, 140)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6mv2y"]
+atlas = ExtResource("1_prmer")
+region = Rect2(675, 0, 93, 140)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qx6ar"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cnjn8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8m4cx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bnj4f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lqx6l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jgurc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h3stn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6mv2y")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="mahoraga" type="CharacterBody2D"]
+script = ExtResource("1_xl6n1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 29.5)
+shape = SubResource("RectangleShape2D_xl6n1")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_qx6ar")

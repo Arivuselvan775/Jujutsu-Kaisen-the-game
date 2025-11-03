@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cyrjhwp3hckou"
+path="res://.godot/imported/myinstants.mp3-b71d6fbefb6bc2e31de91812b60c5d1c.mp3str"
+
+[deps]
+
+source_file="res://sounds/Gojo sounds/myinstants.mp3"
+dest_files=["res://.godot/imported/myinstants.mp3-b71d6fbefb6bc2e31de91812b60c5d1c.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

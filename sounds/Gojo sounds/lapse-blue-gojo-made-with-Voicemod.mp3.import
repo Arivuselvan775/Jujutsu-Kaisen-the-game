@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://b8ctia1rid0gm"
+path="res://.godot/imported/lapse-blue-gojo-made-with-Voicemod.mp3-ab7e8f46e29eff993e77382e86b26bc5.mp3str"
+
+[deps]
+
+source_file="res://sounds/Gojo sounds/lapse-blue-gojo-made-with-Voicemod.mp3"
+dest_files=["res://.godot/imported/lapse-blue-gojo-made-with-Voicemod.mp3-ab7e8f46e29eff993e77382e86b26bc5.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

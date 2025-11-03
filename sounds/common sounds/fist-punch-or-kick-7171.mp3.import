@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cjcj5rinx5fnw"
+path="res://.godot/imported/fist-punch-or-kick-7171.mp3-f14d5857ee53abb87e7a59e075a58635.mp3str"
+
+[deps]
+
+source_file="res://sounds/common sounds/fist-punch-or-kick-7171.mp3"
+dest_files=["res://.godot/imported/fist-punch-or-kick-7171.mp3-f14d5857ee53abb87e7a59e075a58635.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

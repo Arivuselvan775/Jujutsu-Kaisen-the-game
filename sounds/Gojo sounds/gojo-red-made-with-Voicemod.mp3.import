@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://b88x6sii2xjkp"
+path="res://.godot/imported/gojo-red-made-with-Voicemod.mp3-7ae6a1451b34e73337509f0d734987f1.mp3str"
+
+[deps]
+
+source_file="res://sounds/Gojo sounds/gojo-red-made-with-Voicemod.mp3"
+dest_files=["res://.godot/imported/gojo-red-made-with-Voicemod.mp3-7ae6a1451b34e73337509f0d734987f1.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

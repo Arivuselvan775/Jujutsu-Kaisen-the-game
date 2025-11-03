@@ -1,0 +1,90 @@
+[gd_scene load_steps=7 format=3 uid="uid://cmfrnpw06dsy3"]
+
+[ext_resource type="Script" uid="uid://buv1wrqn1eyoq" path="res://scenes/mwheel.gd" id="1_38thh"]
+[ext_resource type="Texture2D" uid="uid://boy6qsk0r1ge0" path="res://sprites/sukuna/kick/mohoraga head wheel.png" id="1_d5jhj"]
+[ext_resource type="AudioStream" uid="uid://b2svw78s88bpg" path="res://sounds/sukuna sounds/mahoraga-adapting-made-with-Voicemod.mp3" id="3_7vpck"]
+
+[sub_resource type="Animation" id="Animation_7vpck"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioStreamPlayer2D:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_38thh"]
+resource_name = "wheel rotation"
+length = 2.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.36667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-6.28319, 6.28319]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioStreamPlayer2D:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1.43333),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_an2rm"]
+_data = {
+&"RESET": SubResource("Animation_7vpck"),
+&"wheel rotation": SubResource("Animation_38thh")
+}
+
+[node name="Mwheel" type="CharacterBody2D"]
+scale = Vector2(0.07, 0.07)
+script = ExtResource("1_38thh")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-10, -10)
+texture = ExtResource("1_d5jhj")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_an2rm")
+}
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.5
+one_shot = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_7vpck")
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

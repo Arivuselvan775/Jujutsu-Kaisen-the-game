@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dhjfebr7u1heq"
+path="res://.godot/imported/AUD-20251027-WA0006.mp3-7a814ddff712894104b0c59891a957ba.mp3str"
+
+[deps]
+
+source_file="res://sounds/sukuna sounds/AUD-20251027-WA0006.mp3"
+dest_files=["res://.godot/imported/AUD-20251027-WA0006.mp3-7a814ddff712894104b0c59891a957ba.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

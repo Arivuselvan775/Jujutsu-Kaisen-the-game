@@ -1,0 +1,207 @@
+[gd_scene load_steps=29 format=3 uid="uid://c2t2hog2umu4c"]
+
+[ext_resource type="Texture2D" uid="uid://nj8lm8ca6r6f" path="res://sprites/sukuna/mahoraga/summon.png" id="1_prmer"]
+[ext_resource type="Script" uid="uid://c8we20hs7ba47" path="res://scripts/mahoraga.gd" id="1_xl6n1"]
+[ext_resource type="Texture2D" uid="uid://5cv7i1s8pf3t" path="res://sprites/sukuna/mahoraga/mahoraga attack 1.png" id="2_jgurc"]
+[ext_resource type="Texture2D" uid="uid://crnbfk0wm5s51" path="res://sprites/sukuna/mahoraga/attack 1.png" id="3_bnj4f"]
+[ext_resource type="Texture2D" uid="uid://gksoo7qa6f3j" path="res://sprites/sukuna/mahoraga/summon1.png" id="3_cnjn8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xl6n1"]
+size = Vector2(30, 79)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uy82c"]
+atlas = ExtResource("2_jgurc")
+region = Rect2(0, 0, 100, 97)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o0376"]
+atlas = ExtResource("2_jgurc")
+region = Rect2(100, 0, 100, 97)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gd8tb"]
+atlas = ExtResource("2_jgurc")
+region = Rect2(200, 0, 100, 97)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lf8mx"]
+atlas = ExtResource("2_jgurc")
+region = Rect2(300, 0, 100, 97)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vq2ox"]
+atlas = ExtResource("2_jgurc")
+region = Rect2(400, 0, 100, 97)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lnud0"]
+atlas = ExtResource("2_jgurc")
+region = Rect2(500, 0, 100, 97)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ysg8"]
+atlas = ExtResource("2_jgurc")
+region = Rect2(600, 0, 100, 97)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k6swb"]
+atlas = ExtResource("2_jgurc")
+region = Rect2(700, 0, 100, 97)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_36g3h"]
+atlas = ExtResource("2_jgurc")
+region = Rect2(800, 0, 100, 97)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e3l8p"]
+atlas = ExtResource("2_jgurc")
+region = Rect2(0, 0, 100, 97)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xulg1"]
+atlas = ExtResource("3_bnj4f")
+region = Rect2(0, 0, 107, 83)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gkh0o"]
+atlas = ExtResource("3_bnj4f")
+region = Rect2(107, 0, 107, 83)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p3rgm"]
+atlas = ExtResource("3_bnj4f")
+region = Rect2(214, 0, 107, 83)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bnj4f"]
+atlas = ExtResource("1_prmer")
+region = Rect2(255, 0, 85, 140)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cnjn8"]
+atlas = ExtResource("3_cnjn8")
+region = Rect2(0, 0, 101, 140)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lqx6l"]
+atlas = ExtResource("3_cnjn8")
+region = Rect2(101, 0, 101, 140)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jgurc"]
+atlas = ExtResource("3_cnjn8")
+region = Rect2(202, 0, 101, 140)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h3stn"]
+atlas = ExtResource("3_cnjn8")
+region = Rect2(0, 140, 101, 140)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6mv2y"]
+atlas = ExtResource("3_cnjn8")
+region = Rect2(101, 140, 101, 140)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d0p7y"]
+atlas = ExtResource("3_cnjn8")
+region = Rect2(202, 140, 101, 140)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qx6ar"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uy82c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o0376")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gd8tb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lf8mx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vq2ox")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lnud0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0ysg8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k6swb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_36g3h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e3l8p")
+}],
+"loop": true,
+"name": &"attack one",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xulg1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gkh0o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p3rgm")
+}],
+"loop": true,
+"name": &"attack two",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bnj4f")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cnjn8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lqx6l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jgurc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h3stn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6mv2y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d0p7y")
+}],
+"loop": false,
+"name": &"summon",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bnj4f"]
+radius = 127.004
+
+[node name="mahoraga" type="CharacterBody2D"]
+collision_layer = 1024
+collision_mask = 1032
+script = ExtResource("1_xl6n1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 29.5)
+shape = SubResource("RectangleShape2D_xl6n1")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-1, -14)
+scale = Vector2(1.2, 1.2)
+sprite_frames = SubResource("SpriteFrames_qx6ar")
+animation = &"attack two"
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(1, 19)
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_bnj4f")
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="animation_looped" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_looped"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

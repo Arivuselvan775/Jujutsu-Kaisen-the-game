@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://0175a6gejbxh"]
+
+[ext_resource type="Script" uid="uid://c1xx25shog8qv" path="res://scripts/rotation.gd" id="1_ynt5w"]
+[ext_resource type="Texture2D" uid="uid://86xwqtlijym7" path="res://sprites/gojo/cropped_circle_image.png" id="2_ynt5w"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ynt5w"]
+radius = 22.0907
+
+[sub_resource type="Environment" id="Environment_ynt5w"]
+background_mode = 3
+glow_enabled = true
+
+[node name="Area2D" type="Area2D"]
+texture_filter = 1
+collision_layer = 0
+collision_mask = 8
+script = ExtResource("1_ynt5w")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(23.684, 1, 100, 1)
+texture = ExtResource("2_ynt5w")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ynt5w")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ynt5w")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

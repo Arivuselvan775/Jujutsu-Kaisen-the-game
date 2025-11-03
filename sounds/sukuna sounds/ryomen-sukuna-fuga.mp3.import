@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://55mu1ujn73jy"
+path="res://.godot/imported/ryomen-sukuna-fuga.mp3-21a97ff09fd61df5b49bf9c39942021d.mp3str"
+
+[deps]
+
+source_file="res://sounds/sukuna sounds/ryomen-sukuna-fuga.mp3"
+dest_files=["res://.godot/imported/ryomen-sukuna-fuga.mp3-21a97ff09fd61df5b49bf9c39942021d.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

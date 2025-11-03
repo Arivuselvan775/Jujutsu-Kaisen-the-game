@@ -1,0 +1,77 @@
+[gd_scene load_steps=11 format=3 uid="uid://dg5xyyvx2akxt"]
+
+[ext_resource type="Script" uid="uid://b6fsnw54rmbej" path="res://cleve.gd" id="1_aorwy"]
+[ext_resource type="Texture2D" uid="uid://h0oe00lcacyh" path="res://sprites/sukuna/cleve file/cleve.1.png" id="2_5bjwm"]
+[ext_resource type="Texture2D" uid="uid://c6u2dsmdi7i7e" path="res://sprites/sukuna/cleve file/cleve.2.png" id="3_oebcq"]
+[ext_resource type="Texture2D" uid="uid://bya8mrelgfv6b" path="res://sprites/sukuna/cleve file/cleve.3.png" id="4_1e8c4"]
+[ext_resource type="Texture2D" uid="uid://dg2duiqwqgvs2" path="res://sprites/sukuna/cleve file/cleve.4.png" id="5_c30am"]
+[ext_resource type="Texture2D" uid="uid://b1mf4dnbglews" path="res://sprites/sukuna/cleve file/cleve.5.png" id="6_pfmqm"]
+[ext_resource type="AudioStream" uid="uid://c0exsex1pcxxp" path="res://sounds/sukuna sounds/world-cuting-slash-jjs-made-with-Voicemod.mp3" id="7_oebcq"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5bjwm"]
+radius = 11.1803
+
+[sub_resource type="Environment" id="Environment_aorwy"]
+background_mode = 3
+glow_enabled = true
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pv22q"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_5bjwm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_oebcq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_1e8c4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_c30am")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_pfmqm")
+}],
+"loop": false,
+"name": &"cleve",
+"speed": 5.0
+}]
+
+[node name="cleve" type="CharacterBody2D"]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_aorwy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_5bjwm")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_aorwy")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+modulate = Color(4.888, 1, 1, 1)
+rotation = 0.698132
+sprite_frames = SubResource("SpriteFrames_pv22q")
+animation = &"cleve"
+frame = 4
+frame_progress = 1.0
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_5bjwm")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_oebcq")
+pitch_scale = 2.0
+max_distance = 1000.0
+attenuation = 3.03143
+area_mask = 8
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="finished" from="AudioStreamPlayer2D" to="." method="_on_audio_stream_player_2d_finished"]

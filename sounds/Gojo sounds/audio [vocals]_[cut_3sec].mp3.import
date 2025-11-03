@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dtdomtl38ygx4"
+path="res://.godot/imported/audio [vocals]_[cut_3sec].mp3-332df8f4bbcefdb315bd1ef69681b94b.mp3str"
+
+[deps]
+
+source_file="res://sounds/Gojo sounds/audio [vocals]_[cut_3sec].mp3"
+dest_files=["res://.godot/imported/audio [vocals]_[cut_3sec].mp3-332df8f4bbcefdb315bd1ef69681b94b.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

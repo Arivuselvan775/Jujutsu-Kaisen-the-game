@@ -1,0 +1,50 @@
+[gd_scene load_steps=8 format=3 uid="uid://omhmweq6jxw1"]
+
+[ext_resource type="Script" uid="uid://db6rs114s3a8f" path="res://scenes/mahoraga_slash.gd" id="1_adxl0"]
+[ext_resource type="Texture2D" uid="uid://crnbfk0wm5s51" path="res://sprites/sukuna/mahoraga/attack 1.png" id="1_xwx13"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_adxl0"]
+radius = 38.2099
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wtpbe"]
+atlas = ExtResource("1_xwx13")
+region = Rect2(392, 0, 196, 83)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k6nhi"]
+atlas = ExtResource("1_xwx13")
+region = Rect2(594, 0, 198, 83)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3muf5"]
+atlas = ExtResource("1_xwx13")
+region = Rect2(790, 0, 158, 83)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ehucg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wtpbe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k6nhi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3muf5")
+}],
+"loop": false,
+"name": &"slash",
+"speed": 5.0
+}]
+
+[node name="mahoraga slash" type="CharacterBody2D"]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_adxl0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_adxl0")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_ehucg")
+animation = &"slash"
+frame = 2
+frame_progress = 1.0

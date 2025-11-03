@@ -1,0 +1,86 @@
+[gd_scene load_steps=8 format=3 uid="uid://450o07rv68vr"]
+
+[ext_resource type="Script" uid="uid://h45edckxr5hg" path="res://scripts/blue.gd" id="1_qe84c"]
+[ext_resource type="Texture2D" uid="uid://86xwqtlijym7" path="res://sprites/gojo/cropped_circle_image.png" id="2_qe84c"]
+
+[sub_resource type="Animation" id="Animation_02wpa"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_ydvue"]
+resource_name = "bullet"
+length = 1.5
+loop_mode = 1
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 17.4533]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hvrnj"]
+_data = {
+&"RESET": SubResource("Animation_02wpa"),
+&"bullet": SubResource("Animation_ydvue")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_oahj1"]
+radius = 7.5
+
+[sub_resource type="Environment" id="Environment_qe84c"]
+background_mode = 3
+glow_enabled = true
+
+[node name="blue" type="CharacterBody2D"]
+collision_layer = 18
+collision_mask = 2
+script = ExtResource("1_qe84c")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_hvrnj")
+}
+speed_scale = 2.0
+movie_quit_on_finish = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 100, 1)
+texture_filter = 1
+scale = Vector2(0.330223, 0.330223)
+texture = ExtResource("2_qe84c")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_oahj1")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+color = Color(0.0540589, 0.170591, 0.47253, 1)
+energy = 10.0
+blend_mode = 2
+texture = ExtResource("2_qe84c")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_qe84c")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
