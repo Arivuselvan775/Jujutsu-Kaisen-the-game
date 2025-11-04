@@ -685,6 +685,10 @@ area_mask = 8
 stream = ExtResource("14_g0wcc")
 volume_db = 3.0
 
+[node name="heal_tmer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
 [connection signal="body_entered" from="punch box" to="." method="_on_punch_box_body_entered"]
 [connection signal="body_exited" from="punch box" to="." method="_on_punch_box_body_exited"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
@@ -697,3 +701,4 @@ volume_db = 3.0
 [connection signal="timeout" from="dead" to="." method="_on_dead_timeout"]
 [connection signal="timeout" from="wheel" to="." method="_on_wheel_timeout"]
 [connection signal="body_entered" from="chase range" to="." method="_on_chase_range_body_entered"]
+[connection signal="timeout" from="heal_tmer" to="." method="_on_heal_tmer_timeout"]

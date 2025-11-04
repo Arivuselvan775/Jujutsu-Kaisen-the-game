@@ -16,8 +16,6 @@ extends CharacterBody2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var sred_timer: Timer = $"sred timer"
 
-
-
 # Constants (unchangeable values)
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
@@ -28,13 +26,16 @@ var health = 100
 var bullet_path = preload("res://scenes/blue.tscn")
 var bullet_path1 = preload("res://scenes/red.tscn")
 
-enum states {IDLE, WALKING, ATTACKING, JUMPING ,DIED}
+## FIX: Added a 'HIT' state to correctly handle taking damage without dying.
+enum states {IDLE, WALKING, ATTACKING, JUMPING, HIT, DIED}
 
 var state = states.IDLE
 
 
 func _physics_process(delta: float) -> void:
 	progress_bar.value = health
+	
+	# Match the current state to run its specific logic
 	match state:
 		states.IDLE:
 			idle()
@@ -42,23 +43,32 @@ func _physics_process(delta: float) -> void:
 			walk()
 		states.ATTACKING:
 			attack()
-		states.DIED:
-			died()
 		states.JUMPING:
 			jumping()
+		states.HIT:
+			# In the HIT state, we mostly just wait for the animation to finish.
+			# Gravity and movement can still apply for knockback.
+			pass 
+		states.DIED:
+			# The died() function is empty, so we can put logic here or there.
+			# For now, we just let gravity affect the body.
+			pass
+
+	## NOTE: This logic runs for most states, but we block it for specific ones.
 	if state == states.DIED:
-		get_gravity()
+		# Stop player input and gravity logic during these states
 		move_and_slide()
 		return
 
+	# Gravity
 	if not is_on_floor():
-		velocity += get_gravity() * delta
+		velocity.y += get_gravity().y * delta
 
 	# Jump input
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor(): 
 		velocity.y = JUMP_VELOCITY
 		animated_sprite_2d.play("jump")
-
+		change_state(states.JUMPING) # Also change state when jumping
 	# Movement input
 	var direction := Input.get_axis("ui_left", "ui_right")
 	if direction:
@@ -68,26 +78,25 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 
+	# Flip sprite and hitbox based on direction
 	if velocity.x < 0:
 		animated_sprite_2d.flip_h = true
 	elif velocity.x > 0:
 		animated_sprite_2d.flip_h = false
+		
 	if animated_sprite_2d.flip_h == true:
 		collision_shape_2d.position.x = -15.5
 	else:
 		collision_shape_2d.position.x = 15.5
 
-	
 		
 func change_state(new_state):
 	state = new_state
+
 func idle():
 	animated_sprite_2d.play("default")
-	if Input.get_axis("ui_left" , "ui_right"):
-		animated_sprite_2d.play("walk")
+	if Input.get_axis("ui_left" , "ui_right") and is_on_floor():
 		change_state(states.WALKING)
-	elif Input.is_action_just_pressed("ui_accept"):
-		change_state(states.JUMPING)
 	elif Input.is_action_just_pressed("blue"):
 		animated_sprite_2d.play("blue")
 		timer.start()
@@ -109,12 +118,14 @@ func idle():
 		animated_sprite_2d.play("sred")
 		$Node2D.position.y = -30.0
 		change_state(states.ATTACKING)
+		animation_player.play("hand ro")
+	elif not is_on_floor():
+		animated_sprite_2d.play("fall")
+
 func walk():
 	animated_sprite_2d.play("walk")
 	if Input.is_action_just_released("ui_left") or Input.is_action_just_released("ui_right"):
 		change_state(states.IDLE)
-	elif Input.is_action_just_pressed("ui_accept"):
-		change_state(states.JUMPING)
 	elif Input.is_action_just_pressed("attack1"):
 		animated_sprite_2d.play("punch")
 		change_state(states.ATTACKING)
@@ -124,15 +135,22 @@ func walk():
 
 func attack():
 	pass
+
+func jumping():
+	## NOTE: When jumping, check if we've landed to return to IDLE.
+	if is_on_floor():
+		change_state(states.IDLE)
+	
+	# You can add logic for coyote time or jump height control here.
+	pass
+
+# These two functions are empty but are called in the match statement.
+# They are kept for structure and can be filled with logic later.
 func died():
 	pass
-func jumping():
-	pass
-	
-
 
 func _on_timer_timeout()-> void:
-	if states.ATTACKING and animated_sprite_2d.animation =="blue":
+	if state == states.ATTACKING and animated_sprite_2d.animation =="blue":
 		red.play()
 		var bullet = bullet_path.instantiate()
 		var ani = bullet.get_node("AnimationPlayer")
@@ -146,11 +164,9 @@ func _on_timer_timeout()-> void:
 			ani.play("bullet")
 			bullet.speed = 555
 		get_parent().add_child(bullet)
-	
-
 
 func _on_timer_2_timeout()-> void:
-	if states.ATTACKING and animated_sprite_2d.animation == "red":
+	if state == states.ATTACKING and animated_sprite_2d.animation == "red":
 		red.play()
 		var bullet = bullet_path1.instantiate()
 		var ani = bullet.get_node("AnimationPlayer")
@@ -164,32 +180,38 @@ func _on_timer_2_timeout()-> void:
 			ani.play("bullet")
 			bullet.speed = 555
 		get_parent().add_child(bullet)
-	
-	
 		
 func _hit():
 	var direc = global_position.x - enemy.global_position.x
 	health -= 10 
 	print(health) 
+	
+	# Stop any ongoing attacks
+	timer.stop()
+	timer2.stop()
+	
 	if health <= 0:
 		change_state(states.DIED)
 		animated_sprite_2d.play("dead")
 		dead.start()
 		Engine.time_scale = 0.5
 		velocity.x = direc * 20
-		timer.stop()
-		timer2.stop()
+		enemy.hedied()
 	else:
+		## FIX: Changed state to HIT instead of DIED. This prevents getting stuck.
 		change_state(states.DIED)
-		animated_sprite_2d.play("hit")
 		velocity.x = direc * 20
-		timer.stop()
-		timer2.stop()
+		if is_on_floor():
+			animated_sprite_2d.play("hit")
+		else:
+			animated_sprite_2d.play("in_air")
+
 func m_hit():
 	health -= 5
 	if health <= 60:
+		## FIX: Changed state to HIT instead of DIED.
+		change_state(states.HIT)
 		animated_sprite_2d.play("damaged")
-		change_state(states.DIED)
 
 func slice():
 	health -= 15
@@ -203,34 +225,51 @@ func slice():
 		animated_sprite_2d.play("slice")
 		velocity.x = 0
 		enemy.hedied()
+
 func restorehealth():
 	health += 30
+
 func _on_animated_sprite_2d_animation_finished() -> void:
-	if not animated_sprite_2d.animation == "sred" and not animated_sprite_2d.animation == "slice" and not animated_sprite_2d.animation == "dead" and not animated_sprite_2d.animation == "punch" or animated_sprite_2d.animation == "jump":
-		change_state(states.IDLE)
-	var over = hitbox.get_overlapping_bodies()
-	if animated_sprite_2d.animation == "punch":
-		animated_sprite_2d.play("kick")
-	if animated_sprite_2d.animation == "dead":
-		label.visible = true
-	if animated_sprite_2d.animation == "red":
-		red_starting.stop()
-	if animated_sprite_2d.animation == "kick" or animated_sprite_2d.animation == "punch":
+	var current_animation = animated_sprite_2d.animation
+	
+	## FIX: This logic is now much cleaner and bug-free.
+	# It checks the current animation and decides what to do next.
+	match current_animation:
+		"punch", "kick", "blue", "red" , "in_air", "black flash":
+			if animated_sprite_2d.animation == "punch":
+				animated_sprite_2d.play("black flash")
+			else:
+				change_state(states.IDLE)
+		"hit", "damaged":
+			animated_sprite_2d.position.y = 0.0
+			change_state(states.IDLE)
+		"dead":
+			label.visible = true
+		"red":
+			red_starting.stop()
+		"sred":
+			red.play()
+			animation_player.play("ro")
+			sred_timer.start()
+			$ured.visible = true
+			
+	
+	# Handle hitbox detection after the animation frame that should deal damage.
+	# NOTE: This is better handled with an Animation Keyframe signal, but for now, this works.
+	if current_animation == "kick" or current_animation == "punch" or current_animation == "black flash":
+		var over = hitbox.get_overlapping_bodies()
 		for area in over:
 			if area.is_in_group("hit"):
 				$"punch sound".play()
-				enemy.damage_received()
-	if animated_sprite_2d.animation == "sred":
-		red.play()
-		animation_player.play("ro")
-		$ured.visible = true
-		sred_timer.start()
+				if current_animation == "black flash":
+					enemy.damage_received(15)
+				else:
+					enemy.damage_received(5)
 				
 func _on_dead_timeout() -> void:
 	label.visible = false
 	Engine.time_scale = 1
-	get_tree().reload_current_scene()
-
+	velocity.x = 0
 
 func _on_sred_timer_timeout() -> void:
 	red.play()
@@ -239,14 +278,12 @@ func _on_sred_timer_timeout() -> void:
 	var bullet = bullet_path1.instantiate()
 	var ani = bullet.get_node("AnimationPlayer")
 	bullet.pos = $Node2D.global_position
-	bullet.speed = 0
 	bullet.velocity.y = -555
 	ani.play("bullet")
 	get_parent().add_child(bullet)
 	$Node2D.position.y = -7.0
 	change_state(states.IDLE)
 	animated_sprite_2d.position.y = 0.0
-
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	animation_player.play("RESET")

@@ -26,6 +26,7 @@ var died = false
 var summon = true
 var stay = false
 var one = true
+var heal = false
 
 var chase = false
 
@@ -43,6 +44,11 @@ func _physics_process(delta: float) -> void:
 	if hit or punch or hit1 or died or stay:
 		move_and_slide()
 		return
+	if heal:
+		if health < 100:
+			health += 0.5
+		elif health == 100:
+			heal = false
 	var direction = global_position.direction_to(target.global_position)
 	var stop = global_position.x - target.global_position.x
 	
@@ -104,7 +110,7 @@ func _punch():
 
 
 func _on_area_2d_body_entered(_body: Node2D) -> void: 
-	health -= 70
+	damage_received(30)
 	_hit1()
 	chase = true
 	
@@ -189,12 +195,12 @@ func _on_wheel_timeout() -> void:
 			
 		
 		
-func damage_received():
+func damage_received(minus):
 	print("received")
-	health -= 5
+	health -= minus
 	#punch_box.monitoring = false
 	_hit1()
-
+	$heal_tmer.start()
 func _hit1():
 	hit1 = true
 	if health <= 0:
@@ -225,3 +231,8 @@ func _on_cleve_timer_timeout() -> void:
 
 func _on_chase_range_body_entered(body: Node2D) -> void:
 	chase = true
+
+
+
+func _on_heal_tmer_timeout() -> void:
+	heal = true

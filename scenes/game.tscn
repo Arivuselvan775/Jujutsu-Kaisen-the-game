@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=4 uid="uid://bb7db62pn40ep"]
+[gd_scene load_steps=24 format=4 uid="uid://bb7db62pn40ep"]
 
 [ext_resource type="Script" uid="uid://cjqr0brdonpef" path="res://scripts/game.gd" id="1_gee14"]
 [ext_resource type="PackedScene" uid="uid://dniqia0mj0pb8" path="res://scenes/main character.tscn" id="1_uwrxv"]
@@ -254,6 +254,12 @@ bg_color = Color(0, 0.00392157, 0, 0)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0tnpc"]
 bg_color = Color(0, 0, 0, 0)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vtaks"]
+bg_color = Color(0, 0.00392157, 0, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kvpfn"]
+bg_color = Color(0, 0, 0, 0)
+
 [sub_resource type="Animation" id="Animation_kvpfn"]
 length = 0.001
 tracks/0/type = "value"
@@ -452,6 +458,37 @@ ESC --> Pause the game"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="VBoxContainer3" type="VBoxContainer" parent="CanvasLayer"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -145.5
+offset_top = -68.5
+offset_right = 145.5
+offset_bottom = 68.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="RESTART" type="Button" parent="CanvasLayer/VBoxContainer3"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_vtaks")
+text = "RESTART
+"
+
+[node name="Button2" type="Button" parent="CanvasLayer/VBoxContainer3"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_kvpfn")
+text = "QUIT
+"
+
 [node name="instruction" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_dinhu")
@@ -459,3 +496,5 @@ libraries = {
 
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/Button2" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer3/RESTART" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer3/Button2" to="." method="_on_button_2_pressed"]

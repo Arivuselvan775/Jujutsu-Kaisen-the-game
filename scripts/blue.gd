@@ -1,6 +1,7 @@
 extends CharacterBody2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var timer: Timer = $Timer
+@onready var hit: Area2D = $hit
 
 var pos:Vector2
 var dir:float
@@ -16,6 +17,10 @@ func _physics_process(_delta: float) -> void:
 		queue_free()
 		print("deleted")
 	move_and_slide()
+	var lap = hit.get_overlapping_bodies()
+	for area in lap:
+		if area.is_in_group("hit"):
+			print("area")
 	
 	
 

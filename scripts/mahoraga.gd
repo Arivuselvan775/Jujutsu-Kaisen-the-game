@@ -6,7 +6,7 @@ extends CharacterBody2D
 
 var slash = preload("res://scenes/mahoraga_slash.tscn")
 
-var speed = 250
+var speed = 200
 var pos: Vector2
 var attack = false
 

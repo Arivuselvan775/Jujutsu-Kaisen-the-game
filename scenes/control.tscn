@@ -1,7 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://dke11n1natt5h"]
+[gd_scene load_steps=6 format=3 uid="uid://dke11n1natt5h"]
 
 [ext_resource type="Script" uid="uid://codn2epgee73v" path="res://scripts/control.gd" id="1_5p55f"]
-[ext_resource type="VideoStream" uid="uid://bnsuyg8ld1nsg" path="res://videos/From-KlickPin-CF-Pin-on-Simpan-Cepat.ogv" id="2_brbbq"]
 [ext_resource type="Texture2D" uid="uid://cfxwr4ik6kd5j" path="res://sprites/sukuna/mahoraga/parts/1762026177448.jpg" id="2_r67kn"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_brbbq"]
@@ -23,7 +22,6 @@ grow_vertical = 2
 script = ExtResource("1_5p55f")
 
 [node name="Panel" type="Panel" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -32,29 +30,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_brbbq")
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -351.0
-offset_top = -438.0
-offset_right = 351.0
-offset_bottom = 602.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/separation = 20
-alignment = 1
-
-[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="VBoxContainer2"]
-layout_mode = 2
-stream = ExtResource("2_brbbq")
-autoplay = true
-
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -85,6 +61,10 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_tjwpk")
 text = "QUIT
 "
 
-[connection signal="finished" from="VBoxContainer2/VideoStreamPlayer" to="." method="_on_video_stream_player_finished"]
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
 [connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/Button2" to="." method="_on_button_2_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

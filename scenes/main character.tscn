@@ -1,7 +1,8 @@
-[gd_scene load_steps=75 format=3 uid="uid://dniqia0mj0pb8"]
+[gd_scene load_steps=81 format=3 uid="uid://dniqia0mj0pb8"]
 
 [ext_resource type="Script" uid="uid://bgndlb8k3rpps" path="res://scripts/main_character.gd" id="1_ciabg"]
 [ext_resource type="Texture2D" uid="uid://lomfpwkf0g4a" path="res://sprites/gojo/6.png" id="2_ovh64"]
+[ext_resource type="Texture2D" uid="uid://ocdtx4is4p8g" path="res://sprites/gojo/black flash.png" id="2_txe0q"]
 [ext_resource type="Texture2D" uid="uid://8bc8ns5yypwq" path="res://sprites/gojo/1.png" id="3_wxao3"]
 [ext_resource type="Texture2D" uid="uid://cf64hqgfhi3np" path="res://sprites/gojo/3.png" id="4_5dwxc"]
 [ext_resource type="Texture2D" uid="uid://d33v0s2b632nt" path="res://sprites/gojo/gojo dead/lower half body.png" id="4_bv31n"]
@@ -25,6 +26,26 @@
 [ext_resource type="AudioStream" uid="uid://dhjfebr7u1heq" path="res://sounds/sukuna sounds/AUD-20251027-WA0006.mp3" id="23_dw4su"]
 [ext_resource type="AudioStream" uid="uid://cjcj5rinx5fnw" path="res://sounds/common sounds/fist-punch-or-kick-7171.mp3" id="24_ovb8v"]
 [ext_resource type="AudioStream" uid="uid://b8ctia1rid0gm" path="res://sounds/Gojo sounds/lapse-blue-gojo-made-with-Voicemod.mp3" id="25_gvnho"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dv1n2"]
+atlas = ExtResource("2_txe0q")
+region = Rect2(0, 0, 32, 55)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vnn3q"]
+atlas = ExtResource("2_txe0q")
+region = Rect2(32, 0, 32, 55)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c2wt4"]
+atlas = ExtResource("2_txe0q")
+region = Rect2(74, 0, 37, 55)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uamvv"]
+atlas = ExtResource("2_txe0q")
+region = Rect2(129, 0, 43, 55)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ww1b0"]
+atlas = ExtResource("2_txe0q")
+region = Rect2(175, 0, 43, 55)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5dwxc"]
 atlas = ExtResource("2_ovh64")
@@ -66,6 +87,10 @@ region = Rect2(119, 0, 58, 55)
 atlas = ExtResource("4_5dwxc")
 region = Rect2(184, 0, 60, 55)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_vngiw"]
+atlas = ExtResource("4_h3165")
+region = Rect2(123, 0, 41, 62)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_ebayc"]
 atlas = ExtResource("4_5dwxc")
 region = Rect2(255, 0, 41, 55)
@@ -77,10 +102,6 @@ region = Rect2(41, 0, 41, 62)
 [sub_resource type="AtlasTexture" id="AtlasTexture_5ook4"]
 atlas = ExtResource("4_h3165")
 region = Rect2(82, 0, 41, 62)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vngiw"]
-atlas = ExtResource("4_h3165")
-region = Rect2(123, 0, 41, 62)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_txe0q"]
 atlas = ExtResource("6_5p408")
@@ -190,6 +211,26 @@ region = Rect2(179, 0, 33, 55)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_dv1n2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vnn3q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c2wt4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uamvv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ww1b0")
+}],
+"loop": false,
+"name": &"black flash",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_5dwxc")
 }, {
 "duration": 1.0,
@@ -273,6 +314,14 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_vngiw")
+}],
+"loop": true,
+"name": &"fall",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_w6at8")
 }, {
 "duration": 1.0,
@@ -286,6 +335,29 @@ animations = [{
 }],
 "loop": false,
 "name": &"hit",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w6at8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w6at8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w6at8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w6at8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w6at8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w6at8")
+}],
+"loop": false,
+"name": &"in_air",
 "speed": 5.0
 }, {
 "frames": [{
@@ -419,6 +491,24 @@ animations = [{
 "texture": ExtResource("12_ohhuc")
 }, {
 "duration": 1.0,
+"texture": ExtResource("12_ohhuc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_ohhuc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_ohhuc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_ohhuc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_ohhuc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_ohhuc")
+}, {
+"duration": 1.0,
 "texture": ExtResource("13_bv31n")
 }, {
 "duration": 1.0,
@@ -469,7 +559,7 @@ size = Vector2(12, 53)
 
 [sub_resource type="LabelSettings" id="LabelSettings_5dwxc"]
 
-[sub_resource type="Environment" id="Environment_bv31n"]
+[sub_resource type="Environment" id="Environment_gvnho"]
 background_mode = 3
 glow_enabled = true
 
@@ -512,9 +602,34 @@ tracks/2/keys = {
 "update": 0,
 "values": [Vector2(1.5, 1.5)]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ured:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(22, -10)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("ured:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_dw4su"]
 resource_name = "ro"
+length = 1.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -522,10 +637,10 @@ tracks/0/path = NodePath("ured:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
+"times": PackedFloat32Array(0, 1.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [0.0, 17.4533]
+"values": [0.0, 34.9066]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -534,10 +649,34 @@ tracks/1/path = NodePath("ured:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.3),
+"times": PackedFloat32Array(0, 0.566667),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(1e-05, 1e-05), Vector2(0.33, 0.33)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ured:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-1.7, -48)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ured:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_ovb8v"]
@@ -575,9 +714,9 @@ position_smoothing_enabled = true
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_3m43i")
-animation = &"blue"
+animation = &"black flash"
 autoplay = "default"
-frame = 8
+frame = 4
 frame_progress = 1.0
 
 [node name="hitbox" type="Area2D" parent="AnimatedSprite2D"]
@@ -638,12 +777,12 @@ region_rect = Rect2(2, 0, 110.222, 57)
 [node name="ured" type="Sprite2D" parent="."]
 visible = false
 modulate = Color(100, 1, 3.384, 1)
-position = Vector2(0, -48)
+position = Vector2(22, -10)
 scale = Vector2(0.33, 0.33)
 texture = ExtResource("22_bv31n")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="ured"]
-environment = SubResource("Environment_bv31n")
+environment = SubResource("Environment_gvnho")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -651,6 +790,7 @@ libraries = {
 }
 
 [node name="sred timer" type="Timer" parent="."]
+wait_time = 1.5
 one_shot = true
 
 [node name="sukuna_laugh" type="AudioStreamPlayer2D" parent="."]
