@@ -702,9 +702,10 @@ _data = {
 &"ured move": SubResource("Animation_ovb8v")
 }
 
-[node name="player" type="CharacterBody2D"]
+[node name="player" type="CharacterBody2D" groups=["player"]]
 texture_filter = 1
-collision_layer = 137
+collision_layer = 16521
+collision_mask = 5
 script = ExtResource("1_ciabg")
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -714,14 +715,14 @@ position_smoothing_enabled = true
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_3m43i")
-animation = &"black flash"
+animation = &"hit"
 autoplay = "default"
-frame = 4
+frame = 3
 frame_progress = 1.0
 
 [node name="hitbox" type="Area2D" parent="AnimatedSprite2D"]
 collision_layer = 512
-collision_mask = 512
+collision_mask = 1536
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/hitbox"]
 visible = false

@@ -20,7 +20,7 @@ var hit = false
 var punch = false
 var hit1 = false
 var timer3 = true
-var cleve = true
+var cleve1 = true
 var b = false
 var died = false
 var summon = true
@@ -51,7 +51,7 @@ func _physics_process(delta: float) -> void:
 			heal = false
 	var direction = global_position.direction_to(target.global_position)
 	var stop = global_position.x - target.global_position.x
-	
+	print(stop)
 	if not is_on_floor():
 		velocity += get_gravity() * delta * 2
 	elif is_on_floor() and chase:
@@ -69,26 +69,26 @@ func _physics_process(delta: float) -> void:
 			velocity.x = 0
 			animated_sprite.play("fuga")
 			$fuga.play()
-		elif stop < -200 and cleve:
+		elif stop < -200 and cleve1:
 			velocity.x = 0
 			animated_sprite.play("cleve")
-		elif stop < -200 and cleve == false and summon and health <= 30 and one:
+		elif stop < -200 and cleve1 == false and summon and health <= 30 and one:
 			velocity.x = 0
 			animated_sprite.play("summon")
-		else:
+		elif stop < -20:
 			animated_sprite.play("walk")
 	elif velocity.x < 0:
 		if stop > 200 and timer3 and health <= 50:
 			velocity.x = 0
 			animated_sprite.play("fuga")
 			$fuga.play()
-		elif stop > 200 and cleve:
+		elif stop > 200 and cleve1:
 			velocity.x = 0
 			animated_sprite.play("cleve")
-		elif stop > 200 and cleve == false and summon and health <= 30 and one:
+		elif stop > 200 and cleve1 == false and summon and health <= 30 and one:
 			velocity.x = 0
 			animated_sprite.play("summon")
-		else:
+		elif stop > 20:
 			animated_sprite.play("walk")
 	elif chase == false:
 		animated_sprite.play("stand")
@@ -110,7 +110,7 @@ func _punch():
 
 
 func _on_area_2d_body_entered(_body: Node2D) -> void: 
-	damage_received(30)
+	damage_received(10)
 	_hit1()
 	chase = true
 	
@@ -125,7 +125,7 @@ func hedied():
 func _on_punch_box_body_entered(_body: Node2D ) -> void:
 	_punch()
 
-func _on_punch_box_body_exited(body: Node2D) -> void:
+func _on_punch_box_body_exited(_body: Node2D) -> void:
 	punch = false
 
 func _on_animated_sprite_2d_animation_looped() -> void:
@@ -165,7 +165,7 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 		get_parent().add_child(bullet)
 	elif animated_sprite.animation == "cleve":
 		cleve_timer.start()
-		cleve = false
+		cleve1 = false
 		for i in range (3):
 			var cleve = cleve_path.instantiate()
 			cleve.pos = $Node2D.global_position
@@ -186,6 +186,7 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 		$wheel.start()
 func _on_wheel_timeout() -> void:
 	var maho = mahoraga.instantiate()
+	maho.visible = true
 	maho.pos = $Mwheel.global_position
 	get_parent().add_child(maho)
 	$Mwheel.position.y = -35.0
@@ -196,7 +197,6 @@ func _on_wheel_timeout() -> void:
 		
 		
 func damage_received(minus):
-	print("received")
 	health -= minus
 	#punch_box.monitoring = false
 	_hit1()
@@ -225,11 +225,11 @@ func _on_timer_3_timeout() -> void:
 
 
 func _on_cleve_timer_timeout() -> void:
-	cleve = true
+	cleve1 = true
 	summon = true
 
 
-func _on_chase_range_body_entered(body: Node2D) -> void:
+func _on_chase_range_body_entered(_body: Node2D) -> void:
 	chase = true
 
 

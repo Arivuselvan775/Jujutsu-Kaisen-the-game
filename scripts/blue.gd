@@ -17,11 +17,6 @@ func _physics_process(_delta: float) -> void:
 		queue_free()
 		print("deleted")
 	move_and_slide()
-	var lap = hit.get_overlapping_bodies()
-	for area in lap:
-		if area.is_in_group("hit"):
-			print("area")
-	
 	
 
 

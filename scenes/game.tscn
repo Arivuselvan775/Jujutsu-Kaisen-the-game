@@ -367,7 +367,7 @@ collision_mask = 8
 shape = SubResource("WorldBoundaryShape2D_iywne")
 
 [node name="enemy" parent="." instance=ExtResource("6_u5sy4")]
-position = Vector2(1140, 331)
+position = Vector2(1138, 490)
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 

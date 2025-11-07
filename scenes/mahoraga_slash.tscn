@@ -37,10 +37,14 @@ animations = [{
 
 [node name="mahoraga slash" type="CharacterBody2D"]
 collision_layer = 0
-collision_mask = 0
+collision_mask = 16384
 script = ExtResource("1_adxl0")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="hit" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hit"]
 shape = SubResource("CircleShape2D_adxl0")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -48,3 +52,5 @@ sprite_frames = SubResource("SpriteFrames_ehucg")
 animation = &"slash"
 frame = 2
 frame_progress = 1.0
+
+[connection signal="body_entered" from="hit" to="." method="_on_hit_body_entered"]

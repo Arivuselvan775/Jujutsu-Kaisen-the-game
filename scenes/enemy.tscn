@@ -17,7 +17,7 @@
 [ext_resource type="AudioStream" uid="uid://cjcj5rinx5fnw" path="res://sounds/common sounds/fist-punch-or-kick-7171.mp3" id="14_j0cyh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vab5u"]
-size = Vector2(15, 56)
+size = Vector2(15, 28)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5lniq"]
 atlas = ExtResource("2_ipns3")
@@ -356,7 +356,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"fuga",
-"speed": 5.0
+"speed": 7.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -575,7 +575,7 @@ animations = [{
 size = Vector2(21, 53)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xwavj"]
-size = Vector2(29, 54)
+size = Vector2(29, 53)
 
 [sub_resource type="Environment" id="Environment_ipns3"]
 background_mode = 3
@@ -586,8 +586,8 @@ radius = 241.052
 
 [node name="enemy" type="CharacterBody2D" groups=["hit"]]
 texture_filter = 1
-collision_layer = 641
-collision_mask = 131
+collision_layer = 516
+collision_mask = 3
 script = ExtResource("1_md0e3")
 
 [node name="punch box" type="Area2D" parent="."]
@@ -595,8 +595,7 @@ collision_layer = 0
 collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="punch box"]
-visible = false
-position = Vector2(15.5, 7)
+position = Vector2(15.5, -7)
 shape = SubResource("RectangleShape2D_vab5u")
 
 [node name="Timer" type="Timer" parent="."]
@@ -607,7 +606,7 @@ one_shot = true
 texture_filter = 1
 position = Vector2(-1, -5)
 sprite_frames = SubResource("SpriteFrames_4ra3w")
-animation = &"intro"
+animation = &"fuga"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 texture_filter = 1
@@ -620,7 +619,8 @@ collision_mask = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 visible = false
-position = Vector2(-2.5, 8)
+position = Vector2(0, 2.5)
+scale = Vector2(0.88906, 1)
 shape = SubResource("RectangleShape2D_xwavj")
 
 [node name="Timer2" type="Timer" parent="."]
@@ -686,7 +686,7 @@ stream = ExtResource("14_g0wcc")
 volume_db = 3.0
 
 [node name="heal_tmer" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 7.0
 one_shot = true
 
 [connection signal="body_entered" from="punch box" to="." method="_on_punch_box_body_entered"]

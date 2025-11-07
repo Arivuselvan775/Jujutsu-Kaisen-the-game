@@ -4,7 +4,7 @@ extends Node2D
 
 func _ready() -> void:
 	$instruction.play("instruction")
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if Input.is_action_just_pressed("resume") and %CharacterBody2D.health > 0:
 		Engine.time_scale = 0
 		$CanvasLayer/VBoxContainer.visible = true

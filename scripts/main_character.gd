@@ -15,7 +15,6 @@ extends CharacterBody2D
 @onready var progress_bar: TextureProgressBar = get_node("/root/Node2D/CanvasLayer/ProgressBar")
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var sred_timer: Timer = $"sred timer"
-
 # Constants (unchangeable values)
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
@@ -34,7 +33,6 @@ var state = states.IDLE
 
 func _physics_process(delta: float) -> void:
 	progress_bar.value = health
-	
 	# Match the current state to run its specific logic
 	match state:
 		states.IDLE:
@@ -71,6 +69,7 @@ func _physics_process(delta: float) -> void:
 		change_state(states.JUMPING) # Also change state when jumping
 	# Movement input
 	var direction := Input.get_axis("ui_left", "ui_right")
+	#var direction1 := Input.get_axis("ui_up", "ui_down")
 	if direction:
 		velocity.x = direction * SPEED
 	else:
@@ -184,7 +183,6 @@ func _on_timer_2_timeout()-> void:
 func _hit():
 	var direc = global_position.x - enemy.global_position.x
 	health -= 10 
-	print(health) 
 	
 	# Stop any ongoing attacks
 	timer.stop()
@@ -193,6 +191,7 @@ func _hit():
 	if health <= 0:
 		change_state(states.DIED)
 		animated_sprite_2d.play("dead")
+		velocity.y = 1000
 		dead.start()
 		Engine.time_scale = 0.5
 		velocity.x = direc * 20
@@ -205,16 +204,37 @@ func _hit():
 			animated_sprite_2d.play("hit")
 		else:
 			animated_sprite_2d.play("in_air")
+	if direc > 1:
+		animated_sprite_2d.flip_h = true
+	else:
+		animated_sprite_2d.flip_h = false
 
 func m_hit():
 	health -= 5
-	if health <= 60:
+	if health <= 60 and health > 0:
 		## FIX: Changed state to HIT instead of DIED.
 		change_state(states.HIT)
 		animated_sprite_2d.play("damaged")
-
-func slice():
-	health -= 15
+	elif health <= 0:
+		animated_sprite_2d.play("dead")
+		velocity.y = 1000
+func maho_hit():
+	health -= 5
+	var mahoraga = get_node("/root/Node2D/mahoraga")
+	var direction = global_position - mahoraga.global_position
+	velocity.x = direction.x * 40  
+	velocity.y = direction.y * -10
+	animated_sprite_2d.play("in_air")
+	change_state(states.DIED)
+	if health <= 0:
+		animated_sprite_2d.play("dead")
+		velocity.y = 1000
+	if direction.x > 1:
+		animated_sprite_2d.flip_h = true
+	else:
+		animated_sprite_2d.flip_h = false
+func slice(dam):
+	health -= dam
 	if health <= 0:
 		change_state(states.DIED)
 		$sukuna_laugh.play()
@@ -224,6 +244,7 @@ func slice():
 		animated_sprite_2d.scale.y = 1.1
 		animated_sprite_2d.play("slice")
 		velocity.x = 0
+		velocity.y = 1000 
 		enemy.hedied()
 
 func restorehealth():
@@ -257,14 +278,24 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 	# Handle hitbox detection after the animation frame that should deal damage.
 	# NOTE: This is better handled with an Animation Keyframe signal, but for now, this works.
 	if current_animation == "kick" or current_animation == "punch" or current_animation == "black flash":
+		var mahoraga = get_node("/root/Node2D/mahoraga")
 		var over = hitbox.get_overlapping_bodies()
+		var mh =  hitbox.get_overlapping_bodies()
 		for area in over:
 			if area.is_in_group("hit"):
 				$"punch sound".play()
 				if current_animation == "black flash":
-					enemy.damage_received(15)
+					enemy.damage_received(10)
 				else:
 					enemy.damage_received(5)
+		for mhit in mh:
+			if mhit.is_in_group("maho hit"):
+				$"punch sound".play()
+				if current_animation == "black flash":
+					print("okay")
+					mahoraga.damage(15)
+				else:
+					mahoraga.damage(5)
 				
 func _on_dead_timeout() -> void:
 	label.visible = false
@@ -285,5 +316,5 @@ func _on_sred_timer_timeout() -> void:
 	change_state(states.IDLE)
 	animated_sprite_2d.position.y = 0.0
 
-func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+func _on_animation_player_animation_finished(_anim_name: StringName) -> void:
 	animation_player.play("RESET")

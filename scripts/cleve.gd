@@ -11,12 +11,11 @@ func _ready() -> void:
 	global_position = pos
 	animated_sprite_2d.play("cleve")
 	$AudioStreamPlayer2D.play()
-func _physics_process(delta: float) -> void:
-	var range1 = global_position.distance_to(pos)
+func _physics_process(_delta: float) -> void:
 	velocity.x = speed
 	if speed == 1000:
 		animated_sprite_2d.flip_h == false
-	else:
+	elif speed == -1000:
 		animated_sprite_2d.flip_h == true
 	move_and_slide()
 	
@@ -24,8 +23,8 @@ func _physics_process(delta: float) -> void:
 	
 
 
-func _on_area_2d_body_entered(body: Node2D) -> void:
-	target.slice()
+func _on_area_2d_body_entered(_body: Node2D) -> void:
+	target.slice(5)
 
 
 func _on_audio_stream_player_2d_finished() -> void:

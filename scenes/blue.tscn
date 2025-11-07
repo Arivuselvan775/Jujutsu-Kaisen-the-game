@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://450o07rv68vr"]
+[gd_scene load_steps=8 format=3 uid="uid://450o07rv68vr"]
 
 [ext_resource type="Script" uid="uid://h45edckxr5hg" path="res://scripts/blue.gd" id="1_qe84c"]
 [ext_resource type="Texture2D" uid="uid://86xwqtlijym7" path="res://sprites/gojo/cropped_circle_image.png" id="2_qe84c"]
@@ -49,8 +49,6 @@ radius = 7.5
 background_mode = 3
 glow_enabled = true
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_qe84c"]
-
 [node name="blue" type="CharacterBody2D"]
 collision_layer = 18
 collision_mask = 2
@@ -84,10 +82,5 @@ texture = ExtResource("2_qe84c")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_qe84c")
-
-[node name="hit" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="hit"]
-shape = SubResource("CircleShape2D_qe84c")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

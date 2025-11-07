@@ -12,7 +12,7 @@ func _ready() -> void:
 	global_position = pos
 	timer.start()
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	var dis = global_position.distance_to(pos)
 	velocity = Vector2(speed, 0).rotated(dir)
 	if speed == -1000:
@@ -30,7 +30,7 @@ func _on_timer_timeout() -> void:
 	queue_free()
 
 
-func _on_area_2d_body_entered(body: Node2D) -> void:
+func _on_area_2d_body_entered(_body: Node2D) -> void:
 	animated_sprite_2d.visible = true
 	animated_sprite_2d.play("fuga last")
 	sprite_2d.visible = false

@@ -16,7 +16,6 @@ func _physics_process(_delta: float) -> void:
 	velocity.x = speed
 	if dis > 500 and velocity.x:
 		queue_free()
-		print("red deleted")
 	if dis >= 250 and velocity.y:
 		timer_2.start()
 		velocity.y = 0
