@@ -285,6 +285,7 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 			if area.is_in_group("hit"):
 				$"punch sound".play()
 				if current_animation == "black flash":
+					enemy.hit_back()
 					enemy.damage_received(10)
 				else:
 					enemy.damage_received(5)
@@ -292,7 +293,6 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 			if mhit.is_in_group("maho hit"):
 				$"punch sound".play()
 				if current_animation == "black flash":
-					print("okay")
 					mahoraga.damage(15)
 				else:
 					mahoraga.damage(5)

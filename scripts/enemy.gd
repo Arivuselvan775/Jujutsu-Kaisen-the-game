@@ -27,6 +27,7 @@ var summon = true
 var stay = false
 var one = true
 var heal = false
+var knock1 = false
 
 var chase = false
 
@@ -41,7 +42,8 @@ var white = Color8(255,255,255,255)
 
 func _physics_process(delta: float) -> void:
 	progress_bar.value = health
-	if hit or punch or hit1 or died or stay:
+	print (knock1)
+	if hit or punch or hit1 or died or stay or knock1:
 		move_and_slide()
 		return
 	if heal:
@@ -51,7 +53,6 @@ func _physics_process(delta: float) -> void:
 			heal = false
 	var direction = global_position.direction_to(target.global_position)
 	var stop = global_position.x - target.global_position.x
-	print(stop)
 	if not is_on_floor():
 		velocity += get_gravity() * delta * 2
 	elif is_on_floor() and chase:
@@ -144,6 +145,9 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 		animated_sprite.play("kick")
 		target._hit()
 		$"punch sound".play()
+	elif animated_sprite.animation == "hit_back":
+		animated_sprite.position.y = -1.0
+		knock1 = false
 	if animated_sprite.animation == "fuga":
 		timer_3.start()
 		timer3 = false
@@ -220,7 +224,6 @@ func _on_timer_2_timeout() -> void:
 
 
 func _on_timer_3_timeout() -> void:
-	print("fuga timer is cooldowned")
 	timer3 = true
 
 
@@ -236,3 +239,11 @@ func _on_chase_range_body_entered(_body: Node2D) -> void:
 
 func _on_heal_tmer_timeout() -> void:
 	heal = true
+func hit_back():
+	var knock = global_position.direction_to(target.global_position)
+	if health < 40:
+		velocity.x = knock.x * -600
+		print(velocity.x)
+		knock1 = true
+		animated_sprite.position.y = 2.0
+		animated_sprite.play("hit_back")

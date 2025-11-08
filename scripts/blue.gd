@@ -15,7 +15,6 @@ func _physics_process(_delta: float) -> void:
 	velocity=Vector2(speed,0).rotated(dir)
 	if dis > 500:
 		queue_free()
-		print("deleted")
 	move_and_slide()
 	
 

@@ -415,7 +415,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_nenq2")
 }],
-"loop": false,
+"loop": true,
 "name": &"hit_back",
 "speed": 5.0
 }, {
