@@ -24,4 +24,4 @@ func _physics_process(_delta: float) -> void:
 
 
 func _on_hit_body_entered(_body: Node2D) -> void:
-	target.slice(3)
+	target.slice(1)

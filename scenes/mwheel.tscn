@@ -68,6 +68,8 @@ _data = {
 
 [node name="Mwheel" type="CharacterBody2D"]
 scale = Vector2(0.07, 0.07)
+collision_layer = 0
+collision_mask = 0
 script = ExtResource("1_38thh")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

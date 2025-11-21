@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://bx5u8w0mmjj8q"]
+
+[ext_resource type="Texture2D" uid="uid://6lcxy6dx1jjg" path="res://sprites/gojo/build.png" id="1_5j34s"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2yopf"]
+size = Vector2(392, 726.5)
+
+[node name="Node2D" type="CharacterBody2D" groups=["building"]]
+collision_layer = 513
+collision_mask = 512
+
+[node name="Build" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
+texture = ExtResource("1_5j34s")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 235.5)
+scale = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_2yopf")

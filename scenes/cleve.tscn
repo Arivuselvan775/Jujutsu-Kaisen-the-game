@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dg5xyyvx2akxt"]
+[gd_scene load_steps=24 format=3 uid="uid://dg5xyyvx2akxt"]
 
 [ext_resource type="Script" uid="uid://b6fsnw54rmbej" path="res://scripts/cleve.gd" id="1_aorwy"]
 [ext_resource type="Texture2D" uid="uid://h0oe00lcacyh" path="res://sprites/sukuna/cleve file/cleve.1.png" id="2_5bjwm"]
@@ -6,7 +6,10 @@
 [ext_resource type="Texture2D" uid="uid://bya8mrelgfv6b" path="res://sprites/sukuna/cleve file/cleve.3.png" id="4_1e8c4"]
 [ext_resource type="Texture2D" uid="uid://dg2duiqwqgvs2" path="res://sprites/sukuna/cleve file/cleve.4.png" id="5_c30am"]
 [ext_resource type="Texture2D" uid="uid://b1mf4dnbglews" path="res://sprites/sukuna/cleve file/cleve.5.png" id="6_pfmqm"]
+[ext_resource type="Texture2D" uid="uid://bit7i4l4fp6vg" path="res://sprites/sukuna/cleve file/cleve1.1.png" id="7_1e8c4"]
 [ext_resource type="AudioStream" uid="uid://c0exsex1pcxxp" path="res://sounds/sukuna sounds/world-cuting-slash-jjs-made-with-Voicemod.mp3" id="7_oebcq"]
+[ext_resource type="Texture2D" uid="uid://bjrp4qrvx4j5b" path="res://sprites/sukuna/cleve file/cleve1.3.png" id="8_c30am"]
+[ext_resource type="Texture2D" uid="uid://bn6vld3ye11s1" path="res://sprites/sukuna/cleve file/cleve1.2.png" id="9_pfmqm"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5bjwm"]
 radius = 11.1803
@@ -14,6 +17,46 @@ radius = 11.1803
 [sub_resource type="Environment" id="Environment_aorwy"]
 background_mode = 3
 glow_enabled = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c30am"]
+atlas = ExtResource("7_1e8c4")
+region = Rect2(0, 0, 129, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pfmqm"]
+atlas = ExtResource("7_1e8c4")
+region = Rect2(0, 20, 129, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pv22q"]
+atlas = ExtResource("7_1e8c4")
+region = Rect2(0, 40, 129, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvbub"]
+atlas = ExtResource("8_c30am")
+region = Rect2(0, 0, 81, 76)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_31p0m"]
+atlas = ExtResource("9_pfmqm")
+region = Rect2(0, 0, 70, 91)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jvlmy"]
+atlas = ExtResource("9_pfmqm")
+region = Rect2(70, 0, 70, 91)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ber6"]
+atlas = ExtResource("9_pfmqm")
+region = Rect2(140, 0, 70, 91)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m7a8y"]
+atlas = ExtResource("9_pfmqm")
+region = Rect2(210, 0, 70, 91)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sjjqi"]
+atlas = ExtResource("9_pfmqm")
+region = Rect2(280, 0, 70, 91)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t1wfp"]
+atlas = ExtResource("9_pfmqm")
+region = Rect2(350, 0, 70, 91)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_pv22q"]
 animations = [{
@@ -36,6 +79,72 @@ animations = [{
 "loop": false,
 "name": &"cleve",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c30am")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pfmqm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pv22q")
+}],
+"loop": false,
+"name": &"cleve1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvbub")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvbub")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvbub")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvbub")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvbub")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvbub")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvbub")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvbub")
+}],
+"loop": false,
+"name": &"cleve2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_31p0m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jvlmy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0ber6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m7a8y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sjjqi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t1wfp")
+}],
+"loop": false,
+"name": &"cleve3",
+"speed": 5.0
 }]
 
 [node name="cleve" type="CharacterBody2D"]
@@ -53,11 +162,8 @@ environment = SubResource("Environment_aorwy")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 modulate = Color(4.888, 1, 1, 1)
-rotation = 0.698132
 sprite_frames = SubResource("SpriteFrames_pv22q")
-animation = &"cleve"
-frame = 4
-frame_progress = 1.0
+animation = &"cleve2"
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 0

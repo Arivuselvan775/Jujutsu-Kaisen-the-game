@@ -1,0 +1,211 @@
+[gd_scene load_steps=23 format=3 uid="uid://6bvudr7l8s22"]
+
+[ext_resource type="Texture2D" uid="uid://bp687gjp7ldqh" path="res://sprites/gojo/4.png" id="2_liyih"]
+[ext_resource type="Script" uid="uid://pnxtih08skpi" path="res://scenes/hallow_purple.gd" id="2_r0jip"]
+[ext_resource type="Texture2D" uid="uid://b8sxd07v5b13t" path="res://sprites/new_atlas_texture.tres" id="3_r0jip"]
+[ext_resource type="Texture2D" uid="uid://nhkwylx3ty6q" path="res://sprites/new_atlas_texture1.tres" id="4_v25uh"]
+[ext_resource type="Texture2D" uid="uid://bjytrbjkb2elj" path="res://sprites/gojo/purple explosion/1762934624604.png" id="5_r0jip"]
+[ext_resource type="Texture2D" uid="uid://cp7yrds84l8ry" path="res://sprites/gojo/purple explosion/puut.png" id="6_v25uh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2s4dq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ejh46"]
+atlas = ExtResource("2_liyih")
+region = Rect2(0, 0, 69, 105)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vsr87"]
+atlas = ExtResource("2_liyih")
+region = Rect2(75, 0, 68, 105)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pr2b7"]
+atlas = ExtResource("2_liyih")
+region = Rect2(149, 0, 71, 105)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fvg6o"]
+atlas = ExtResource("2_liyih")
+region = Rect2(224, 0, 71, 105)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qrkjd"]
+atlas = ExtResource("2_liyih")
+region = Rect2(366, 0, 71, 105)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_di2wf"]
+atlas = ExtResource("5_r0jip")
+region = Rect2(0, 0, 1024, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cp8hp"]
+atlas = ExtResource("5_r0jip")
+region = Rect2(0, 512, 1024, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nkkmv"]
+atlas = ExtResource("5_r0jip")
+region = Rect2(0, 1024, 1024, 512)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_liyih"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ejh46")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vsr87")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pr2b7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fvg6o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_r0jip")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qrkjd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_v25uh")
+}],
+"loop": false,
+"name": &"default",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_di2wf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cp8hp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nkkmv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_v25uh")
+}],
+"loop": false,
+"name": &"finished",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r0jip"]
+atlas = ExtResource("2_liyih")
+region = Rect2(436, 0, 105, 105)
+
+[sub_resource type="Environment" id="Environment_v25uh"]
+background_mode = 3
+glow_enabled = true
+glow_intensity = 3.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_di2wf"]
+
+[sub_resource type="Animation" id="Animation_liyih"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Area2D/CollisionShape2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_2s4dq"]
+resource_name = "explosion"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(5, 5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Area2D/CollisionShape2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(100, 100)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_r0jip"]
+_data = {
+&"RESET": SubResource("Animation_liyih"),
+&"explosion": SubResource("Animation_2s4dq")
+}
+
+[node name="hallow_purple" type="CharacterBody2D" groups=["hallow"]]
+z_index = 7
+texture_filter = 1
+collision_layer = 0
+script = ExtResource("2_r0jip")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_2s4dq")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+modulate = Color(1, 1, 3.384, 1)
+position = Vector2(0.56, -1.525)
+sprite_frames = SubResource("SpriteFrames_liyih")
+animation = &"finished"
+frame = 3
+frame_progress = 1.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(1, 1, 3.384, 1)
+position = Vector2(0.56, -1.525)
+texture = SubResource("AtlasTexture_r0jip")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_v25uh")
+
+[node name="Timer2" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[node name="Area2D" type="Area2D" parent="." groups=["hallow"]]
+position = Vector2(0, -2.005)
+collision_layer = 16
+collision_mask = 20
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_di2wf")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_r0jip")
+}
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="Timer2" to="." method="_on_timer_2_timeout"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

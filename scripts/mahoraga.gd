@@ -2,6 +2,7 @@ extends CharacterBody2D
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var area_2d: Area2D = $Area2D
 @onready var progress_bar: ProgressBar = $ProgressBar
+@onready var hurt_box: Area2D = $"hurt box"
 
 
 @onready var target = get_node("/root/Node2D/CharacterBody2D")
@@ -43,6 +44,10 @@ func _physics_process(delta: float) -> void:
 	if health <= 0:
 		finish = true
 		animated_sprite_2d.play("dead")
+	var area = hurt_box.get_overlapping_areas()
+	for ar in area:
+		if ar.is_in_group("hallow"):
+			damage(100)
 
 
 
@@ -77,5 +82,5 @@ func damage(da):
 	health -= da
 
 
-func _on_hurt_box_body_entered(body: Node2D) -> void:
+func _on_hurt_box_body_entered(_body: Node2D) -> void:
 	damage(20)

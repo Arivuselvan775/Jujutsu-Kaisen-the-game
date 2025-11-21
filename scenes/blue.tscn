@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://450o07rv68vr"]
+[gd_scene load_steps=10 format=3 uid="uid://450o07rv68vr"]
 
 [ext_resource type="Script" uid="uid://h45edckxr5hg" path="res://scripts/blue.gd" id="1_qe84c"]
 [ext_resource type="Texture2D" uid="uid://86xwqtlijym7" path="res://sprites/gojo/cropped_circle_image.png" id="2_qe84c"]
+[ext_resource type="AudioStream" uid="uid://bt2cefsjtd5ty" path="res://sounds/gojo-blue-made-with-Voicemod (1).mp3" id="3_ydvue"]
 
 [sub_resource type="Animation" id="Animation_02wpa"]
 length = 0.001
@@ -49,7 +50,10 @@ radius = 7.5
 background_mode = 3
 glow_enabled = true
 
-[node name="blue" type="CharacterBody2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_qe84c"]
+radius = 4.12311
+
+[node name="blue" type="CharacterBody2D" groups=["blue"]]
 collision_layer = 18
 collision_mask = 2
 script = ExtResource("1_qe84c")
@@ -68,7 +72,7 @@ scale = Vector2(0.330223, 0.330223)
 texture = ExtResource("2_qe84c")
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 10.0
 one_shot = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -83,4 +87,20 @@ texture = ExtResource("2_qe84c")
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_qe84c")
 
+[node name="purple trigger" type="Area2D" parent="."]
+collision_layer = 256
+collision_mask = 256
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="purple trigger"]
+shape = SubResource("CircleShape2D_qe84c")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_ydvue")
+
+[node name="delete" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="area_entered" from="purple trigger" to="." method="_on_purple_trigger_area_entered"]
+[connection signal="timeout" from="delete" to="." method="_on_delete_timeout"]

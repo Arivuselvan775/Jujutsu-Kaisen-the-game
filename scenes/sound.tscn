@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://depu76qapr4rv"]
+
+[ext_resource type="AudioStream" uid="uid://7bjbtqcf08pc" path="res://sounds/sukuna sounds/GOJO VS SUKUNA FULL FIGHT AMV  ENDING SCENE 4K  LADY GAGA - JUDAS.mp3" id="1_ii1ul"]
+
+[node name="sound" type="AudioStreamPlayer2D"]
+stream = ExtResource("1_ii1ul")
+autoplay = true
