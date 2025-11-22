@@ -54,6 +54,9 @@ func change_state(new_state):
 	state = new_state
 
 func _physics_process(delta: float) -> void:
+	if state == states.DEAD:
+		return
+	#print(execution7)
 	#print(health)
 	if execution7 == 1:
 		label.text = "A"
@@ -107,7 +110,7 @@ func idle():
 	elif chase:
 		animated_sprite.play("intro")
 func walk():
-	#target.move = false
+	target.move = false
 	animated_sprite.position.y = -5.0
 	#velocity = Vector2.ZERO
 	$CollisionShape2D.disabled = false
@@ -162,7 +165,6 @@ func _punch():
 		change_state(states.ATTACKING)
 func throw():
 	# Throw AWAY from the player
-	var throw_dir = sign(global_position.x - target.global_position.x)
 
 	velocity.x = -1000      # Throw horizontally
 	velocity.y = -1000              # Throw slightly upward for nice arc
@@ -398,7 +400,7 @@ func damage_received(minus):
 	elif  health <= 10 and execution7 == 6:
 		if not $AnimationPlayer.current_animation == "RESET":
 			$AnimationPlayer.play("execution")
-			execution5 = true
+			#execution5 = true
 			health = 10
  	#punch_box.monitoring = false
 	_hit1()
@@ -407,12 +409,17 @@ func _hit1():
 	if label.text == "W" and execution3:
 		animated_sprite.play("hit_1")
 		animated_sprite.position.y = 2.0
-		#execution7 = execution7 + 1
-	#if health <= 0:
-		#animated_sprite.position.y = 2.0
-		#animated_sprite.play("hit")
-		#timer_2.wait_time = 5
-		#change_state(states.DEAD)
+	if health <= 0:
+		area_2d.monitorable = false
+		area_2d.monitoring = false
+		collision_shape_2d.disabled = false
+		$AnimationPlayer2.play("dead wheel")
+		label.visible = false
+		progress_bar.visible = false
+		animated_sprite.position.y = 2.0
+		animated_sprite.play("hit")
+		timer_2.wait_time = 5
+		change_state(states.DEAD)
 	animated_sprite.modulate = red
 	timer_2.start()
 
@@ -420,7 +427,8 @@ func _hit1():
 func _on_timer_2_timeout() -> void:
 	#punch_box.monitoring = true
 	animated_sprite.modulate = white
-
+	if state == states.DEAD:
+		get_tree().change_scene_to_file("res://scenes/won.tscn")
 
 func _on_timer_3_timeout() -> void:
 	can_fuga = true

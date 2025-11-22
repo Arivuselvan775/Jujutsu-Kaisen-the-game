@@ -50,7 +50,6 @@ enum states {IDLE, WALKING, ATTACKING, JUMPING, HIT, DIED, PURPLE, PURPLE0, EXEC
 var state = states.IDLE
 
 func _physics_process(delta: float) -> void:
-	print(enemy.execution4)
 	var wall = hitbox.get_overlapping_bodies()
 	if move == true:
 		var direction1 = global_position.direction_to(enemy.global_position)
@@ -165,11 +164,10 @@ func idle():
 		timer2.start()
 		change_state(states.ATTACKING)
 		can_damaged = false
-	elif Input.is_action_just_pressed("attack1") and enemy.label.text == "W" and hitbox.overlaps_body(enemy) :
+	elif Input.is_action_just_pressed("attack1") and enemy.label.text == "W" and hitbox.overlaps_body(enemy):
 		animated_sprite_2d.play("punch1")
 		change_state(states.EXECUTION)
 		can_damaged = false
-		move1 = true
 	elif Input.is_action_pressed("attack1") and enemy.execution3 == false:
 		animated_sprite_2d.play("punch1")
 		change_state(states.ATTACKING)
@@ -189,7 +187,10 @@ func idle():
 		change_state(states.ATTACKING)
 	elif Input.is_action_just_pressed("begin") and can_red and can_purple and final:
 		animated_sprite_2d.play("purple begin")
+		enemy.execution7 += 1
 		animation_player.play("ured move")
+		enemy.execution5 = false
+		$hallow_final.play()
 		change_state(states.PURPLE0)
 	elif Input.is_action_just_pressed("domain") and enemy.execution2 == true and hitbox.overlaps_body(enemy):
 		Engine.time_scale = 0.9
@@ -237,8 +238,11 @@ func purple0():
 		velocity.y += -150
 	elif global_position.y <= 250:
 		final_execution.text = "Q"
+		animation_player.play("final execution")
 		velocity.y = 0.0
 	if Input.is_action_just_pressed("hallow purple") and final_execution.text == "Q":
+		final_execution.visible = false
+		animation_player.play("RESET")
 		change_state(states.PURPLE)
 func execution():
 	pass
@@ -373,6 +377,7 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 			if animated_sprite_2d.animation == "punch1" and enemy.execution3 == false:
 				animated_sprite_2d.play("punch")
 			elif animated_sprite_2d.animation == "punch1" and enemy.execution3 == true:
+				move1 = true
 				animated_sprite_2d.play("punch3")
 			else:
 				rotation_degrees = 0.0

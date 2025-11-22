@@ -1,4 +1,4 @@
-[gd_scene load_steps=158 format=3 uid="uid://c6jgflkxkd45n"]
+[gd_scene load_steps=159 format=3 uid="uid://c6jgflkxkd45n"]
 
 [ext_resource type="Script" uid="uid://bi2813at4x4f0" path="res://scripts/enemy.gd" id="1_md0e3"]
 [ext_resource type="Texture2D" uid="uid://dx7sqgsnh0u00" path="res://sprites/sukuna/cleve ani.png" id="2_ipns3"]
@@ -53,6 +53,7 @@
 [ext_resource type="Texture2D" uid="uid://c8q7dow6lb6pe" path="res://sprites/sukuna/knock air/Synfig Animation 1.0040.png" id="51_ud7v7"]
 [ext_resource type="Texture2D" uid="uid://bfmugyt460km8" path="res://sprites/sukuna/knock air/Synfig Animation 1.0041.png" id="52_gfvuc"]
 [ext_resource type="Texture2D" uid="uid://dg3el5d3x0v0v" path="res://sprites/sukuna/knock air/Synfig Animation 1.0042.png" id="53_ki2n6"]
+[ext_resource type="Texture2D" uid="uid://ck84x5r5rnpng" path="res://sprites/sukuna/punch2.png" id="53_tysqt"]
 [ext_resource type="Texture2D" uid="uid://nr8erhuyssw5" path="res://sprites/sukuna/knock air/Synfig Animation 1.0043.png" id="54_xjubu"]
 [ext_resource type="Texture2D" uid="uid://dn3ql631f052b" path="res://sprites/sukuna/knock air/Synfig Animation 1.0044.png" id="55_yvxa8"]
 [ext_resource type="Texture2D" uid="uid://t5cgksjotcon" path="res://sprites/sukuna/knock air/Synfig Animation 1.0045.png" id="56_i8ki6"]
@@ -270,8 +271,8 @@ atlas = ExtResource("7_w8i8w")
 region = Rect2(0, 74, 47, 68)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3yi8r"]
-atlas = ExtResource("7_w8i8w")
-region = Rect2(94, 74, 47, 68)
+atlas = ExtResource("53_tysqt")
+region = Rect2(96, 71, 45, 71)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1f82d"]
 atlas = ExtResource("3_c4w8v")
@@ -648,15 +649,6 @@ animations = [{
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_nenq2")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_nenq2")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_nenq2")
-}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_nenq2")
 }, {
@@ -1062,14 +1054,62 @@ height = 56.0
 
 [sub_resource type="Animation" id="Animation_a5akt"]
 length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HeadWheel:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -50)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HeadWheel:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
 
 [sub_resource type="Animation" id="Animation_13roy"]
-resource_name = "air"
+resource_name = "dead wheel"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HeadWheel:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -50), Vector2(71.99999, 19.999992)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HeadWheel:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 18.849556]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4lt7r"]
 _data = {
 &"RESET": SubResource("Animation_a5akt"),
-&"air": SubResource("Animation_13roy")
+&"dead wheel": SubResource("Animation_13roy")
 }
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2drwo"]
@@ -1145,7 +1185,7 @@ one_shot = true
 texture_filter = 1
 position = Vector2(-1, -5)
 sprite_frames = SubResource("SpriteFrames_4ra3w")
-animation = &"deflect"
+animation = &"hit_back 4"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false

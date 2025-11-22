@@ -1,7 +1,7 @@
-[gd_scene load_steps=162 format=3 uid="uid://dniqia0mj0pb8"]
+[gd_scene load_steps=163 format=3 uid="uid://dniqia0mj0pb8"]
 
 [ext_resource type="Script" uid="uid://bgndlb8k3rpps" path="res://scripts/main_character.gd" id="1_ciabg"]
-[ext_resource type="Script" uid="uid://bfybcy7aatyfb" path="res://scenes/camera_2d.gd" id="2_c2wt4"]
+[ext_resource type="Script" uid="uid://bfybcy7aatyfb" path="res://scripts/camera_2d.gd" id="2_c2wt4"]
 [ext_resource type="Texture2D" uid="uid://lomfpwkf0g4a" path="res://sprites/gojo/6.png" id="2_ovh64"]
 [ext_resource type="Texture2D" uid="uid://ocdtx4is4p8g" path="res://sprites/gojo/black flash.png" id="2_txe0q"]
 [ext_resource type="Texture2D" uid="uid://liymto0woa80" path="res://sprites/gojo/infnte void/7.png" id="2_w6c7n"]
@@ -49,8 +49,9 @@
 [ext_resource type="AudioStream" uid="uid://cjcj5rinx5fnw" path="res://sounds/common sounds/fist-punch-or-kick-7171.mp3" id="24_ovb8v"]
 [ext_resource type="AudioStream" uid="uid://b8ctia1rid0gm" path="res://sounds/Gojo sounds/lapse-blue-gojo-made-with-Voicemod.mp3" id="25_gvnho"]
 [ext_resource type="Texture2D" uid="uid://bp2aqx88gdsa0" path="res://sprites/gojo/cartoon-shock-animation-frames.png" id="35_g8f85"]
-[ext_resource type="Script" uid="uid://cwxtq7ncf78df" path="res://scenes/black.gd" id="49_dv1n2"]
+[ext_resource type="Script" uid="uid://cwxtq7ncf78df" path="res://scripts/black.gd" id="49_dv1n2"]
 [ext_resource type="Texture2D" uid="uid://bmk0wkcljagc" path="res://sprites/gojo/wall slam.png" id="50_vnn3q"]
+[ext_resource type="AudioStream" uid="uid://djvaw13en7uw5" path="res://sounds/Gojo sounds/WhatsApp Audio 2025-11-21 at 7.01.30 PM.mp3" id="52_uamvv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dv1n2"]
 atlas = ExtResource("2_txe0q")
@@ -1686,7 +1687,7 @@ script = ExtResource("2_c2wt4")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_3m43i")
-animation = &"final flash"
+animation = &"domain_expansion"
 autoplay = "default"
 
 [node name="hitbox" type="Area2D" parent="AnimatedSprite2D"]
@@ -1836,6 +1837,9 @@ offset_right = 2.0
 offset_bottom = -29.0
 scale = Vector2(1.52, 1)
 text = "X"
+
+[node name="hallow_final" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("52_uamvv")
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

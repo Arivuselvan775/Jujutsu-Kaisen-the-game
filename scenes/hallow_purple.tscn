@@ -1,7 +1,7 @@
 [gd_scene load_steps=23 format=3 uid="uid://6bvudr7l8s22"]
 
 [ext_resource type="Texture2D" uid="uid://bp687gjp7ldqh" path="res://sprites/gojo/4.png" id="2_liyih"]
-[ext_resource type="Script" uid="uid://pnxtih08skpi" path="res://scenes/hallow_purple.gd" id="2_r0jip"]
+[ext_resource type="Script" uid="uid://pnxtih08skpi" path="res://scripts/hallow_purple.gd" id="2_r0jip"]
 [ext_resource type="Texture2D" uid="uid://b8sxd07v5b13t" path="res://sprites/new_atlas_texture.tres" id="3_r0jip"]
 [ext_resource type="Texture2D" uid="uid://nhkwylx3ty6q" path="res://sprites/new_atlas_texture1.tres" id="4_v25uh"]
 [ext_resource type="Texture2D" uid="uid://bjytrbjkb2elj" path="res://sprites/gojo/purple explosion/1762934624604.png" id="5_r0jip"]

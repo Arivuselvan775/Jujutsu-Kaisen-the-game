@@ -55,6 +55,7 @@ func hallow_purple():
 
 
 func _on_purple_trigger_area_entered(_area: Area2D) -> void:
+	velocity.x = 0
 	target.call_deferred("fin")
 	queue_free()
 

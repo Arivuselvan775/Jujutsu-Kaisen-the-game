@@ -10,10 +10,10 @@
 [ext_resource type="PackedScene" uid="uid://0175a6gejbxh" path="res://scenes/rotation.tscn" id="7_u5sy4"]
 [ext_resource type="Texture2D" uid="uid://cfxwr4ik6kd5j" path="res://sprites/sukuna/mahoraga/parts/1762026177448.jpg" id="9_0tnpc"]
 [ext_resource type="Texture2D" uid="uid://86xwqtlijym7" path="res://sprites/gojo/cropped_circle_image.png" id="10_dinhu"]
-[ext_resource type="Script" uid="uid://33bma4vtxe0" path="res://scenes/blue_ammo.gd" id="10_kvuet"]
+[ext_resource type="Script" uid="uid://33bma4vtxe0" path="res://scripts/blue_ammo.gd" id="10_kvuet"]
 [ext_resource type="PackedScene" uid="uid://bx5u8w0mmjj8q" path="res://building.tscn" id="10_vtaks"]
 [ext_resource type="Texture2D" uid="uid://b4gvwufu8sxtc" path="res://sprites/gojo/cropped_circle_image (1).png" id="11_kvuet"]
-[ext_resource type="Script" uid="uid://b5pb1hpp2o3sc" path="res://scenes/red_ammo.gd" id="12_trtic"]
+[ext_resource type="Script" uid="uid://b5pb1hpp2o3sc" path="res://scripts/red_ammo.gd" id="12_trtic"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_u5sy4"]
 texture = ExtResource("5_u5sy4")

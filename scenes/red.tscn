@@ -56,7 +56,7 @@ background_mode = 3
 glow_enabled = true
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_10bml"]
-radius = 3.16228
+radius = 4.472136
 
 [node name="red" type="CharacterBody2D" groups=["red"]]
 texture_filter = 1
@@ -101,7 +101,7 @@ one_shot = true
 
 [node name="purple trigger" type="Area2D" parent="."]
 collision_layer = 256
-collision_mask = 256
+collision_mask = 272
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="purple trigger"]
 shape = SubResource("CircleShape2D_10bml")
