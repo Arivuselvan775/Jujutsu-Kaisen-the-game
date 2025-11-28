@@ -11,7 +11,6 @@ extends CharacterBody2D
 @onready var collision_shape_2d: CollisionShape2D = $AnimatedSprite2D/hitbox/CollisionShape2D
 @onready var timer_3: Timer = $Timer3
 @onready var hitbox: Area2D = $AnimatedSprite2D/hitbox
-@onready var progress_bar: TextureProgressBar = get_node("/root/Node2D/CanvasLayer/ProgressBar")
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var sred_timer: Timer = $"sred timer"
 @onready var animated_sprite_2: AnimatedSprite2D = $AnimatedSprite2D2
@@ -20,6 +19,9 @@ extends CharacterBody2D
 @onready var wall_slam: AnimatedSprite2D = $"wall slam"
 @onready var camera_2d: Camera2D = $Camera2D
 @onready var final_execution: Label = $"final execution"
+@onready var mobile_control: CanvasLayer = $"mobile control"
+@onready var healthbar: ProgressBar = $Healthbar
+
 
 
 # Constants (unchangeable values)
@@ -33,7 +35,6 @@ var can_red = false
 var can_purple = false
 var can_damaged = true
 var move = false
-var move1 = false
 var blue_ammo = 5
 var red_ammo = 5
 var first_blue = true
@@ -43,13 +44,15 @@ var final = false
 var bullet_path = preload("res://scenes/blue.tscn")
 var bullet_path1 = preload("res://scenes/red.tscn")
 var hallow = preload("res://scenes/hallow_purple.tscn")
-
+var upblue = preload("res://scenes/up blue.tscn")
+var upred = preload("res://scenes/up_red.tscn")
 ## FIX: Added a 'HIT' state to correctly handle taking damage without dying.
 enum states {IDLE, WALKING, ATTACKING, JUMPING, HIT, DIED, PURPLE, PURPLE0, EXECUTION, GRAB}
 
 var state = states.IDLE
 
 func _physics_process(delta: float) -> void:
+	#print(can_damaged)
 	var wall = hitbox.get_overlapping_bodies()
 	if move == true:
 		var direction1 = global_position.direction_to(enemy.global_position)
@@ -69,7 +72,7 @@ func _physics_process(delta: float) -> void:
 				enemy.animated_sprite_2d_2.visible = false
 				move = false
 				camera_2d.shake(4.0)
-	progress_bar.value = health
+	healthbar.value = health
 	# Match the current state to run its specific logic
 	match state:
 		states.IDLE:
@@ -105,16 +108,16 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor() and pur == false:
 		velocity.y += get_gravity().y * delta
 	# Jump input
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor() and not state == states.EXECUTION and move == false and move1 ==false: 
+	if Input.is_action_just_pressed("ui_accept") and is_on_floor() and not state == states.EXECUTION and move == false: 
 		velocity.y = JUMP_VELOCITY
 		animated_sprite_2d.play("jump")
 		change_state(states.JUMPING) # Also change state when jumping
 	# Movement input
 	var direction := Input.get_axis("ui_left", "ui_right")
 	#var direction1 := Input.get_axis("ui_up", "ui_down")
-	if direction and move == false  and move1 ==false:
+	if direction and move == false:
 		velocity.x = direction * SPEED
-	elif not animated_sprite_2d.animation == "finish1" and move == false and move1 == false:
+	elif not animated_sprite_2d.animation == "finish1" and move == false:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
 	move_and_slide()
@@ -192,6 +195,7 @@ func idle():
 		enemy.execution5 = false
 		$hallow_final.play()
 		change_state(states.PURPLE0)
+		can_damaged = false
 	elif Input.is_action_just_pressed("domain") and enemy.execution2 == true and hitbox.overlaps_body(enemy):
 		Engine.time_scale = 0.9
 		animated_sprite_2d.play("black_flash1")
@@ -235,13 +239,15 @@ func purple1():
 func purple0():
 	pur = true
 	if is_on_floor():
-		velocity.y += -150
+		velocity.y += -20
 	elif global_position.y <= 250:
 		final_execution.text = "Q"
 		animation_player.play("final execution")
+		mobile_control.exe_5.visible = true
 		velocity.y = 0.0
-	if Input.is_action_just_pressed("hallow purple") and final_execution.text == "Q":
-		final_execution.visible = false
+	if Input.is_action_just_pressed("hallow purple") and final_execution.text == "Q" and velocity.y == 0.0:
+		mobile_control.exe_5.visible = true
+		final_execution.visible = false 
 		animation_player.play("RESET")
 		change_state(states.PURPLE)
 func execution():
@@ -333,23 +339,28 @@ func m_hit():
 		velocity.y = 1000
 		enemy.hedied()
 func maho_hit():
-	health -= 5
-	var mahoraga = get_node("/root/Node2D/mahoraga")
-	var direction = global_position - mahoraga.global_position
-	velocity.x = direction.x * 40  
-	velocity.y = direction.y * -10
-	animated_sprite_2d.play("in_air")
-	change_state(states.DIED)
-	if health <= 0:
-		change_state(states.DIED)
-		animated_sprite_2d.play("dead")
-		velocity.y = 1000
-		enemy.hedied()
-	if direction.x > 1:
-		animated_sprite_2d.flip_h = true
+	if can_damaged == false:
+		return
 	else:
-		animated_sprite_2d.flip_h = false
+		health -= 5
+		var mahoraga = get_node("/root/Node2D/mahoraga")
+		var direction = global_position - mahoraga.global_position
+		velocity.x = direction.x * 40  
+		velocity.y = direction.y * -10
+		animated_sprite_2d.play("in_air")
+		change_state(states.DIED)
+		if health <= 0:
+			change_state(states.DIED)
+			animated_sprite_2d.play("dead")
+			velocity.y = 1000
+			enemy.hedied()
+		if direction.x > 1:
+			animated_sprite_2d.flip_h = true
+		else:
+			animated_sprite_2d.flip_h = false
 func slice(dam):
+	if can_damaged == false:
+		return
 	health -= dam
 	if health <= 0:
 		change_state(states.DIED)
@@ -367,7 +378,7 @@ func restorehealth():
 	health += 30
 
 func _on_animated_sprite_2d_animation_finished() -> void:
-	timer2.wait_time = 3
+	timer2.wait_time = 1.0
 	var current_animation = animated_sprite_2d.animation
 	
 	## FIX: This logic is now much cleaner and bug-free.
@@ -377,8 +388,8 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 			if animated_sprite_2d.animation == "punch1" and enemy.execution3 == false:
 				animated_sprite_2d.play("punch")
 			elif animated_sprite_2d.animation == "punch1" and enemy.execution3 == true:
-				move1 = true
-				animated_sprite_2d.play("punch3")
+				can_damaged = false
+				animated_sprite_2d.play("kick")
 			else:
 				rotation_degrees = 0.0
 				Engine.time_scale = 1.0
@@ -396,13 +407,13 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 		"punch3":
 			animated_sprite_2d.play("kick")
 		"kick":
-			animated_sprite_2d.play("punch2")
-		"punch2":
 			if enemy.execution3:
 				animated_sprite_2d.play("black flash")
 				health += 50
 			else:
 				animated_sprite_2d.play("black_flash2")
+		"black flash":
+			change_state(states.IDLE)
 		"black_flash2":
 			change_state(states.IDLE)
 			can_damaged = true
@@ -461,12 +472,6 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 					change_state(states.IDLE)
 					camera_2d.shake(1.0)
 					enemy.execution3 = false
-					move1 = false
-					if first_blue:
-						animated_sprite_2d.play("blue")
-						timer.start()
-						change_state(states.ATTACKING)
-						first_blue = false
 				elif current_animation == "black_flash2":
 					camera_2d.shake(0.4)
 					black.play("black flash effect")
@@ -474,6 +479,7 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 					enemy.damage_received(5)
 					enemy.can_execution(3)
 				elif current_animation == "final flash":
+					$sblue.start()
 					camera_2d.shake(0.8)
 					black.play("black flash effect")
 					enemy.animation_player.play("RESET")
@@ -503,7 +509,22 @@ func _on_sred_timer_timeout() -> void:
 	enemy.animation_player.play("RESET")
 	animation_player.play("ured move")
 	$ured.visible = false
-	var bullet = bullet_path1.instantiate()
+	var bullet = upred.instantiate()
+	var ani = bullet.get_node("AnimationPlayer")
+	bullet.pos = $Node2D.global_position
+	bullet.velocity.y = -555
+	ani.play("bullet")
+	get_parent().add_child(bullet)
+	$Node2D.position.y = -7.0
+	animated_sprite_2d.position.y = 0.0
+	can_damaged = true
+	if not state == states.DIED:
+		change_state(states.IDLE)
+
+func _on_sblue_timeout() -> void:
+	#enemy.animation_player.play("RESET")
+	$ured.visible = false
+	var bullet = upblue.instantiate()
 	var ani = bullet.get_node("AnimationPlayer")
 	bullet.pos = $Node2D.global_position
 	bullet.velocity.y = -555
@@ -517,7 +538,7 @@ func _on_sred_timer_timeout() -> void:
 		
 func fin():
 	animated_sprite_2d.play("hallow")
-	var posi = get_node("/root/Node2D/red")
+	var posi = get_node("/root/Node2D/up red")
 	var purple = hallow.instantiate()
 	purple.pos = posi.global_position
 	get_parent().add_child(purple)

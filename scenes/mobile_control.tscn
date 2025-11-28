@@ -1,0 +1,146 @@
+[gd_scene load_steps=13 format=3 uid="uid://k3ipo5yo8tee"]
+
+[ext_resource type="Script" uid="uid://busm18v7wwy8a" path="res://scripts/mobile_control.gd" id="1_npv8u"]
+[ext_resource type="Texture2D" uid="uid://uvsan8wlra6b" path="res://sprites/buttons/IMG-20251126-WA0001.png" id="2_fdkne"]
+[ext_resource type="Texture2D" uid="uid://dp1iyb1diquuj" path="res://sprites/buttons/IMG-20251126-WA0008.png" id="3_db4fk"]
+[ext_resource type="Texture2D" uid="uid://b7rdnhsthe8xt" path="res://sprites/buttons/IMG-20251126-WA0006.png" id="4_v3jpq"]
+[ext_resource type="Texture2D" uid="uid://dqd8l3mymmia2" path="res://sprites/buttons/IMG-20251126-WA0009.png" id="5_epa54"]
+[ext_resource type="Texture2D" uid="uid://dxht7j30vt8rd" path="res://sprites/buttons/IMG-20251126-WA0010.png" id="6_pplgg"]
+[ext_resource type="Texture2D" uid="uid://ksyeo28ag17d" path="res://sprites/buttons/IMG-20251126-WA0004.png" id="7_sx2b7"]
+[ext_resource type="Texture2D" uid="uid://c7c6gvk8g415b" path="res://sprites/buttons/IMG-20251126-WA0000.png" id="8_w3bju"]
+[ext_resource type="Texture2D" uid="uid://cs4rclhvu3fm" path="res://sprites/buttons/IMG-20251126-WA0007.png" id="9_1jrcp"]
+[ext_resource type="Texture2D" uid="uid://b4jnemo5dl5cy" path="res://sprites/buttons/IMG-20251126-WA0002.png" id="10_deycu"]
+[ext_resource type="Texture2D" uid="uid://nikb0suqmdhw" path="res://sprites/buttons/IMG-20251126-WA0005.png" id="11_5vgxc"]
+[ext_resource type="Texture2D" uid="uid://dqsofqmm35whp" path="res://sprites/buttons/IMG-20251126-WA0003.png" id="12_i65h0"]
+
+[node name="mobile control" type="CanvasLayer"]
+script = ExtResource("1_npv8u")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="attack" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+
+[node name="up" type="TouchScreenButton" parent="MarginContainer/attack"]
+modulate = Color(1, 1, 1, 0.5882353)
+position = Vector2(-92.946, -300)
+rotation = 1.5707964
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("2_fdkne")
+action = "ui_accept"
+
+[node name="heavy attack" type="TouchScreenButton" parent="MarginContainer/attack"]
+modulate = Color(1, 1, 1, 0.5882353)
+position = Vector2(-409.869, -300)
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("3_db4fk")
+action = "kick"
+
+[node name="light attack" type="TouchScreenButton" parent="MarginContainer/attack"]
+modulate = Color(1, 1, 1, 0.5882353)
+position = Vector2(-609.836, -300)
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("4_v3jpq")
+action = "attack1"
+
+[node name="red" type="TouchScreenButton" parent="MarginContainer/attack"]
+modulate = Color(1, 1, 1, 0.5882353)
+position = Vector2(-409.869, -150)
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("5_epa54")
+action = "red"
+
+[node name="blue" type="TouchScreenButton" parent="MarginContainer/attack"]
+modulate = Color(1, 1, 1, 0.5882353)
+position = Vector2(-609.836, -150)
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("6_pplgg")
+action = "blue"
+
+[node name="exe1" type="TouchScreenButton" parent="MarginContainer/attack"]
+visible = false
+position = Vector2(-409, -450)
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("7_sx2b7")
+action = "domain"
+
+[node name="exe2" type="TouchScreenButton" parent="MarginContainer/attack"]
+visible = false
+position = Vector2(-409, -450)
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("4_v3jpq")
+action = "attack1"
+
+[node name="exe3" type="TouchScreenButton" parent="MarginContainer/attack"]
+visible = false
+position = Vector2(-409, -450.914)
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("8_w3bju")
+action = "sred"
+
+[node name="exe4" type="TouchScreenButton" parent="MarginContainer/attack"]
+visible = false
+position = Vector2(-409, -450.914)
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("9_1jrcp")
+action = "begin"
+
+[node name="exe5" type="TouchScreenButton" parent="MarginContainer/attack"]
+visible = false
+position = Vector2(-409, -450)
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("10_deycu")
+action = "hallow purple"
+
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+grow_vertical = 0
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer2"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+
+[node name="right" type="TouchScreenButton" parent="MarginContainer2/HBoxContainer2"]
+modulate = Color(1, 1, 1, 0.5882353)
+position = Vector2(250, -150)
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("11_5vgxc")
+action = "ui_right"
+
+[node name="left" type="TouchScreenButton" parent="MarginContainer2/HBoxContainer2"]
+modulate = Color(1, 1, 1, 0.5882353)
+position = Vector2(50, -150)
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("2_fdkne")
+action = "ui_left"
+
+[node name="MarginContainer3" type="MarginContainer" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -122.39868
+offset_right = -122.39868
+grow_horizontal = 0
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer3"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="resume" type="TouchScreenButton" parent="MarginContainer3/HBoxContainer2"]
+modulate = Color(1, 1, 1, 0.5882353)
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("12_i65h0")
+action = "resume"

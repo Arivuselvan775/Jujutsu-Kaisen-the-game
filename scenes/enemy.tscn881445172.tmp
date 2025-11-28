@@ -1,4 +1,4 @@
-[gd_scene load_steps=164 format=3 uid="uid://c6jgflkxkd45n"]
+[gd_scene load_steps=159 format=3 uid="uid://c6jgflkxkd45n"]
 
 [ext_resource type="Script" uid="uid://bi2813at4x4f0" path="res://scripts/enemy.gd" id="1_md0e3"]
 [ext_resource type="Texture2D" uid="uid://dx7sqgsnh0u00" path="res://sprites/sukuna/cleve ani.png" id="2_ipns3"]
@@ -62,28 +62,6 @@
 [ext_resource type="Texture2D" uid="uid://cjj3vuvs3kyed" path="res://sprites/sukuna/knock air/Synfig Animation 1.0048.png" id="59_1a2lo"]
 [ext_resource type="Texture2D" uid="uid://byyehyeicojj8" path="res://sprites/gojo/smoke.png" id="60_a5akt"]
 [ext_resource type="AudioStream" uid="uid://7bjbtqcf08pc" path="res://sounds/sukuna sounds/GOJO VS SUKUNA FULL FIGHT AMV  ENDING SCENE 4K  LADY GAGA - JUDAS.mp3" id="61_4lt7r"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tysqt"]
-bg_color = Color(0, 0, 0, 0)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-corner_radius_top_left = 1
-corner_radius_top_right = 1
-corner_radius_bottom_right = 1
-corner_radius_bottom_left = 1
-expand_margin_left = 1.0
-expand_margin_top = 1.0
-expand_margin_right = 1.0
-expand_margin_bottom = 1.0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kbbx4"]
-bg_color = Color(1, 0, 0, 1)
-corner_radius_top_left = 1
-corner_radius_top_right = 1
-corner_radius_bottom_right = 1
-corner_radius_bottom_left = 1
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vab5u"]
 size = Vector2(15, 28)
@@ -522,7 +500,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"fuga",
-"speed": 10.0
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -621,6 +599,33 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_nenq2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nenq2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nenq2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nenq2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nenq2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nenq2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nenq2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nenq2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nenq2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nenq2")
 }],
 "loop": false,
 "name": &"hit_back 2",
@@ -632,12 +637,27 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_nenq2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nenq2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nenq2")
 }],
 "loop": false,
 "name": &"hit_back 3",
 "speed": 5.0
 }, {
 "frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nenq2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nenq2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nenq2")
+}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_nenq2")
 }, {
@@ -979,7 +999,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5uy6h"]
-size = Vector2(17.5, 50)
+size = Vector2(21, 53)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xwavj"]
 size = Vector2(29, 53)
@@ -1044,7 +1064,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, -64)]
+"values": [Vector2(0, -50)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -1071,7 +1091,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(0, -64), Vector2(71.99999, 19.999992)]
+"values": [Vector2(0, -50), Vector2(71.99999, 19.999992)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -1135,54 +1155,6 @@ animations = [{
 "speed": 30.0
 }]
 
-[sub_resource type="Animation" id="Animation_tysqt"]
-resource_name = "health"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("damage number:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(0, -70), Vector2(0, -140)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("damage number:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-
-[sub_resource type="Animation" id="Animation_kbbx4"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("damage number:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_kbbx4"]
-_data = {
-&"RESET": SubResource("Animation_kbbx4"),
-&"health": SubResource("Animation_tysqt")
-}
-
 [node name="enemy" type="CharacterBody2D" groups=["hit"]]
 z_index = 2
 texture_filter = 1
@@ -1190,21 +1162,9 @@ collision_layer = 516
 collision_mask = 3
 script = ExtResource("1_md0e3")
 
-[node name="Healthbar" type="ProgressBar" parent="."]
-offset_left = -25.0
-offset_top = -50.0
-offset_right = 25.0
-offset_bottom = -45.0
-size_flags_horizontal = 8
-size_flags_vertical = 8
-theme_override_styles/background = SubResource("StyleBoxFlat_tysqt")
-theme_override_styles/fill = SubResource("StyleBoxFlat_kbbx4")
-value = 100.0
-show_percentage = false
-
 [node name="HeadWheel" type="Sprite2D" parent="."]
 visible = false
-position = Vector2(0, -64)
+position = Vector2(0, -50)
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("17_shcg2")
 
@@ -1223,13 +1183,14 @@ one_shot = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-position = Vector2(2, -5)
+position = Vector2(-1, -5)
 sprite_frames = SubResource("SpriteFrames_4ra3w")
-animation = &"b_intro"
+animation = &"hit_back 4"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 texture_filter = 1
-position = Vector2(1.75, 4)
+position = Vector2(0, 2.5)
 shape = SubResource("RectangleShape2D_5uy6h")
 
 [node name="Area2D" type="Area2D" parent="."]
@@ -1264,6 +1225,13 @@ one_shot = true
 [node name="dead" type="Timer" parent="."]
 wait_time = 5.0
 one_shot = true
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+offset_left = -30.0
+offset_top = -39.0
+offset_right = 30.0
+offset_bottom = -35.0
+show_percentage = false
 
 [node name="Mwheel" type="Node2D" parent="."]
 position = Vector2(33, -15)
@@ -1313,9 +1281,9 @@ libraries = {
 [node name="Label" type="Label" parent="."]
 visible = false
 offset_left = -4.0
-offset_top = -90.0
+offset_top = -83.0
 offset_right = 8.0
-offset_bottom = -67.0
+offset_bottom = -60.0
 text = "A"
 
 [node name="execution" type="Area2D" parent="."]
@@ -1324,6 +1292,10 @@ collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="execution"]
 shape = SubResource("CapsuleShape2D_1x4g4")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2.5, 2.5)
+position_smoothing_enabled = true
 
 [node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
 libraries = {
@@ -1342,20 +1314,9 @@ one_shot = true
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("61_4lt7r")
+autoplay = true
 max_distance = 500.0
 parameters/looping = false
-
-[node name="damage indicator" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_kbbx4")
-}
-
-[node name="damage number" type="RichTextLabel" parent="."]
-visible = false
-offset_top = -70.0
-offset_right = 40.0
-offset_bottom = -30.0
-theme_override_colors/default_color = Color(1, 0, 0, 1)
 
 [connection signal="body_entered" from="punch box" to="." method="_on_punch_box_body_entered"]
 [connection signal="body_exited" from="punch box" to="." method="_on_punch_box_body_exited"]

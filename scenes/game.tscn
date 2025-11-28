@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=4 uid="uid://bb7db62pn40ep"]
+[gd_scene load_steps=27 format=4 uid="uid://bb7db62pn40ep"]
 
 [ext_resource type="Script" uid="uid://cjqr0brdonpef" path="res://scripts/game.gd" id="1_gee14"]
 [ext_resource type="PackedScene" uid="uid://dniqia0mj0pb8" path="res://scenes/main character.tscn" id="1_uwrxv"]
@@ -6,12 +6,11 @@
 [ext_resource type="PackedScene" uid="uid://clsqcq8he0iun" path="res://scenes/killzone.tscn" id="6_p57ef"]
 [ext_resource type="PackedScene" uid="uid://c6jgflkxkd45n" path="res://scenes/enemy.tscn" id="6_u5sy4"]
 [ext_resource type="Texture2D" uid="uid://dogrcxnxhbw8j" path="res://sprites/Free/Background/BGFree2.png" id="7_0tnpc"]
-[ext_resource type="Texture2D" uid="uid://cg03vauqyr25f" path="res://sprites/png/background.png" id="7_gee14"]
 [ext_resource type="PackedScene" uid="uid://0175a6gejbxh" path="res://scenes/rotation.tscn" id="7_u5sy4"]
 [ext_resource type="Texture2D" uid="uid://cfxwr4ik6kd5j" path="res://sprites/sukuna/mahoraga/parts/1762026177448.jpg" id="9_0tnpc"]
 [ext_resource type="Texture2D" uid="uid://86xwqtlijym7" path="res://sprites/gojo/cropped_circle_image.png" id="10_dinhu"]
 [ext_resource type="Script" uid="uid://33bma4vtxe0" path="res://scripts/blue_ammo.gd" id="10_kvuet"]
-[ext_resource type="PackedScene" uid="uid://bx5u8w0mmjj8q" path="res://building.tscn" id="10_vtaks"]
+[ext_resource type="PackedScene" uid="uid://bx5u8w0mmjj8q" path="res://scenes/building.tscn" id="10_vtaks"]
 [ext_resource type="Texture2D" uid="uid://b4gvwufu8sxtc" path="res://sprites/gojo/cropped_circle_image (1).png" id="11_kvuet"]
 [ext_resource type="Script" uid="uid://b5pb1hpp2o3sc" path="res://scripts/red_ammo.gd" id="12_trtic"]
 
@@ -252,10 +251,6 @@ _data = {
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_iywne"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_0tnpc"]
-atlas = ExtResource("7_gee14")
-region = Rect2(0, 0, 200, 30)
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gee14"]
 bg_color = Color(0, 0.00392157, 0, 0)
 
@@ -308,6 +303,15 @@ _data = {
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_gee14")
 
+[node name="CharacterBody2D" parent="." instance=ExtResource("1_uwrxv")]
+unique_name_in_owner = true
+position = Vector2(73, 498)
+
+[node name="enemy" parent="." instance=ExtResource("6_u5sy4")]
+position = Vector2(938, 496)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
 [node name="TileMap" type="Node" parent="."]
 
 [node name="Layer1" type="TileMapLayer" parent="TileMap"]
@@ -319,10 +323,6 @@ tile_set = SubResource("TileSet_gee14")
 [node name="Layer0" type="TileMapLayer" parent="TileMap"]
 use_parent_material = true
 tile_set = SubResource("TileSet_gee14")
-
-[node name="CharacterBody2D" parent="." instance=ExtResource("1_uwrxv")]
-unique_name_in_owner = true
-position = Vector2(73, 494)
 
 [node name="purple" type="Node" parent="."]
 
@@ -374,9 +374,6 @@ collision_mask = 8
 [node name="CollisionShape2D" type="CollisionShape2D" parent="killzone"]
 shape = SubResource("WorldBoundaryShape2D_iywne")
 
-[node name="enemy" parent="." instance=ExtResource("6_u5sy4")]
-position = Vector2(1138, 490)
-
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
 [node name="layer2" type="ParallaxLayer" parent="ParallaxBackground"]
@@ -390,34 +387,24 @@ texture = ExtResource("7_0tnpc")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="ProgressBar" type="TextureProgressBar" parent="CanvasLayer"]
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -201.0
-offset_top = 2.0
-offset_right = -1.0
-offset_bottom = 32.0
-grow_horizontal = 0
-size_flags_horizontal = 8
-size_flags_vertical = 8
-value = 100.0
-texture_progress = SubResource("AtlasTexture_0tnpc")
-tint_progress = Color(100, 1, 1, 1)
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer"]
+offset_left = 130.0
+offset_top = 10.0
+offset_right = 395.0
+offset_bottom = 129.0
+text = "W -->  Small attack
+D -->  Heavy attack
+A , S --> Special attacks
+Arrow keys --> Movement
+ESC --> Pause the game"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/ProgressBar"]
-layout_mode = 0
-offset_left = -30.0
-offset_top = 2.0
-offset_right = 10.0
-offset_bottom = 42.0
-text = "HP"
-
-[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/ProgressBar"]
-position = Vector2(25, 67)
+[node name="Sprite2D2" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(60, 68)
 texture = ExtResource("10_dinhu")
 
-[node name="blue ammo" type="RichTextLabel" parent="CanvasLayer/ProgressBar/Sprite2D"]
+[node name="blue ammo" type="RichTextLabel" parent="CanvasLayer/Sprite2D2"]
 offset_left = 30.0
 offset_right = 70.0
 offset_bottom = 40.0
@@ -425,11 +412,11 @@ text = "5"
 script = ExtResource("10_kvuet")
 metadata/_edit_use_anchors_ = true
 
-[node name="Sprite2D2" type="Sprite2D" parent="CanvasLayer/ProgressBar"]
-position = Vector2(25, 120)
+[node name="Sprite2D3" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(60, 121)
 texture = ExtResource("11_kvuet")
 
-[node name="red ammo" type="RichTextLabel" parent="CanvasLayer/ProgressBar/Sprite2D2"]
+[node name="red ammo" type="RichTextLabel" parent="CanvasLayer/Sprite2D3"]
 offset_left = 30.0
 offset_right = 70.0
 offset_bottom = 40.0
@@ -475,19 +462,6 @@ theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxFlat_0tnpc")
 text = "QUIT
 "
-
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer"]
-offset_left = 10.0
-offset_top = 10.0
-offset_right = 275.0
-offset_bottom = 129.0
-text = "W -->  Small attack
-D -->  Heavy attack
-A , S --> Special attacks
-Arrow keys --> Movement
-ESC --> Pause the game"
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="VBoxContainer3" type="VBoxContainer" parent="CanvasLayer"]
 visible = false

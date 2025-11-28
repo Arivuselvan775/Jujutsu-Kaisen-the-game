@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var speed = 150
+var speed = 200
 @onready var target = get_node("/root/Node2D/CharacterBody2D")
 @onready var damage: AnimatedSprite2D = target.get_node("AnimatedSprite2D")
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
@@ -12,11 +12,12 @@ var speed = 150
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 @onready var timer_3: Timer = $Timer3
 @onready var cleve_timer: Timer = $"cleve timer"
-@onready var progress_bar: ProgressBar = $ProgressBar
-@onready var camera_2d: Camera2D = $Camera2D
 @onready var label: Label = $Label
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var animated_sprite_2d_2: AnimatedSprite2D = $AnimatedSprite2D2
+@onready var healthbar: ProgressBar = $Healthbar
+@onready var damage_number: RichTextLabel = $"damage number"
+@onready var damage_indicator: AnimationPlayer = $"damage indicator"
 
 
 enum states {IDLE, WALKING, ATTACKING, KNOCK, DEAD, SUMMON, STOP, CANNOT, THROW}
@@ -54,8 +55,14 @@ func change_state(new_state):
 	state = new_state
 
 func _physics_process(delta: float) -> void:
+	if health < 0:
+		state = states.DEAD
 	if state == states.DEAD:
 		return
+	var pun = punch_box.get_overlapping_bodies()
+	for hit in pun:
+		if hit.is_in_group("player") and not state == states.ATTACKING and target.health > 0:
+			_punch()
 	#print(execution7)
 	#print(health)
 	if execution7 == 1:
@@ -65,8 +72,10 @@ func _physics_process(delta: float) -> void:
 	elif execution7 == 3:
 		label.text = "Z"
 	elif execution7 == 4:
+		target.mobile_control.exe_1.visible = false
 		label.text = "W"
 	elif execution7 == 5:
+		target.mobile_control.exe_2.visible = false
 		label.text = "D"
 	elif execution7 == 6:
 		label.text = "E"
@@ -80,9 +89,11 @@ func _physics_process(delta: float) -> void:
 			walk()
 		states.CANNOT:
 			cannot()
+		states.ATTACKING:
+			animated_sprite.position.y = -5.0
 	
 	
-	progress_bar.value = health
+	healthbar.value = health
 	
 	if heal:
 		if health < 100:
@@ -131,7 +142,7 @@ func walk():
 		if stop < -200:
 			choosing_attack()
 			velocity.x = 0
-	elif stop < -50 and health <= 20 and summon:
+	elif health <= 30 and summon:
 		velocity.x = 0
 		animated_sprite.play("summon")
 		change_state(states.SUMMON)
@@ -139,7 +150,7 @@ func walk():
 		if stop > 200:
 			choosing_attack()
 			velocity.x = 0
-	elif stop > 50 and health <= 30 and summon:
+	elif health <= 30 and summon:
 		velocity.x = 0
 		animated_sprite.play("summon")
 		change_state(states.SUMMON)
@@ -176,19 +187,8 @@ func throw():
 
 
 func _on_area_2d_body_entered(_body: Node2D) -> void:
-	var a = area_2d.get_overlapping_bodies()
-	for area in a:
-		if area.is_in_group("blue"):
-			health -= 1
-			if deflect:
-				var bl = get_node("/root/Node2D/blue")
-				animated_sprite.play("deflect")
-				change_state(states.ATTACKING)
-				bl._up()
-		elif area.is_in_group("red"):
-			health -= 1
-		damage_received(10)
-		_hit1()
+	damage_received(10)
+	_hit1()
 	chase = true
 
 func _on_area_2d_body_exited(_body: Node2D) -> void:
@@ -362,14 +362,8 @@ func _on_wheel_timeout() -> void:
 			
 		
 func damage_received(minus):
-	var groups = area_2d.get_overlapping_bodies()
-	for group in groups:
-		if group.is_in_group("blue"):
-			var blue = get_node("/root/Node2D/blue")
-			blue.delete()
-		elif group.is_in_group("red"):
-			var red1 = get_node("/root/Node2D/red")
-			red1.delete()
+	damage_number.text = str(-minus)
+	damage_indicator.play("health")
 	if execution == false and execution1 == false and execution2 == false and execution3 == false and execution4 == false and execution5 == false:
 		health -= minus
 	if health <= 70 and execution7 == 1:
@@ -384,11 +378,13 @@ func damage_received(minus):
 			execution1 = true
 	elif  health <= 50 and execution7 == 3:
 		if not $AnimationPlayer.current_animation == "RESET":
+			target.mobile_control.exe_1.visible = true
 			$AnimationPlayer.play("execution")
 			execution2 = true
 			health = 50
 	elif  health <= 30 and execution7 == 4:
 		if not $AnimationPlayer.current_animation == "RESET":
+			target.mobile_control.exe_2.visible = true
 			$AnimationPlayer.play("execution")
 			execution3 = true
 			health = 30
@@ -398,6 +394,7 @@ func damage_received(minus):
 			execution4 = true
 			health = 20
 	elif  health <= 10 and execution7 == 6:
+		target.mobile_control.exe_3.visible = true
 		if not $AnimationPlayer.current_animation == "RESET":
 			$AnimationPlayer.play("execution")
 			#execution5 = true
@@ -415,7 +412,7 @@ func _hit1():
 		collision_shape_2d.disabled = false
 		$AnimationPlayer2.play("dead wheel")
 		label.visible = false
-		progress_bar.visible = false
+		healthbar.visible = false
 		animated_sprite.position.y = 2.0
 		animated_sprite.play("hit")
 		timer_2.wait_time = 5
@@ -444,7 +441,7 @@ func _on_chase_range_body_entered(_body: Node2D) -> void:
 func can_execution(type):
 	if type == 1:
 		var knock = global_position.direction_to(target.global_position)
-		velocity.x = knock.x * -800
+		velocity.x = knock.x * -1000
 		animated_sprite.position.y = 2.0
 		animated_sprite.play("hit_back")
 		health -= 10
@@ -453,7 +450,7 @@ func can_execution(type):
 		cleve_timer.wait_time = 0.1
 	if type == 2:
 		var knock = global_position.direction_to(target.global_position)
-		velocity.x = knock.x * -800
+		velocity.x = knock.x * -750
 		animated_sprite.position.y = 2.0
 		animated_sprite.play("hit_back 1")
 		execution7 = execution7 + 1
@@ -461,13 +458,13 @@ func can_execution(type):
 	if type == 3:
 		var knock = global_position.direction_to(target.global_position)
 		animated_sprite.position.y = 2.0
-		velocity.x = knock.x * -800
+		velocity.x = knock.x * -900
 		animated_sprite.play("hit_back 3")
 		change_state(states.KNOCK)
 	if type == 4:
 		var knock = global_position.direction_to(target.global_position)
 		animated_sprite.position.y = 2.0
-		velocity.x = knock.x * -800
+		velocity.x = knock.x * -700
 		animated_sprite.play("hit_back 4")
 		execution4 = false
 		change_state(states.KNOCK)

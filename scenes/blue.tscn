@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://450o07rv68vr"]
+[gd_scene load_steps=26 format=3 uid="uid://450o07rv68vr"]
 
 [ext_resource type="Script" uid="uid://h45edckxr5hg" path="res://scripts/blue.gd" id="1_qe84c"]
 [ext_resource type="Texture2D" uid="uid://86xwqtlijym7" path="res://sprites/gojo/cropped_circle_image.png" id="2_qe84c"]
 [ext_resource type="AudioStream" uid="uid://bt2cefsjtd5ty" path="res://sounds/gojo-blue-made-with-Voicemod (1).mp3" id="3_ydvue"]
+[ext_resource type="Texture2D" uid="uid://d27gihwo8ihvp" path="res://sprites/gojo/vecteezy_cartoon-sprite-sheet-of-star-explosion_24238370.png" id="4_02wpa"]
 
 [sub_resource type="Animation" id="Animation_02wpa"]
 length = 0.001
@@ -53,6 +54,108 @@ glow_enabled = true
 [sub_resource type="CircleShape2D" id="CircleShape2D_qe84c"]
 radius = 5.0990195
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_hvrnj"]
+atlas = ExtResource("4_02wpa")
+region = Rect2(0, 0, 274, 271)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o74wx"]
+atlas = ExtResource("4_02wpa")
+region = Rect2(274, 0, 274, 271)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dikbc"]
+atlas = ExtResource("4_02wpa")
+region = Rect2(548, 0, 274, 271)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f3133"]
+atlas = ExtResource("4_02wpa")
+region = Rect2(822, 0, 274, 271)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3yxm2"]
+atlas = ExtResource("4_02wpa")
+region = Rect2(1096, 0, 274, 271)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uw3aw"]
+atlas = ExtResource("4_02wpa")
+region = Rect2(1370, 0, 274, 271)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jn8yo"]
+atlas = ExtResource("4_02wpa")
+region = Rect2(1644, 0, 274, 271)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qyv0q"]
+atlas = ExtResource("4_02wpa")
+region = Rect2(0, 271, 274, 271)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qvg1f"]
+atlas = ExtResource("4_02wpa")
+region = Rect2(274, 271, 274, 271)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y0y43"]
+atlas = ExtResource("4_02wpa")
+region = Rect2(548, 271, 274, 271)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7fd6l"]
+atlas = ExtResource("4_02wpa")
+region = Rect2(822, 271, 274, 271)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p7aah"]
+atlas = ExtResource("4_02wpa")
+region = Rect2(1096, 271, 274, 271)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_14o55"]
+atlas = ExtResource("4_02wpa")
+region = Rect2(1370, 271, 274, 271)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5fqdb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hvrnj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o74wx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dikbc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f3133")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3yxm2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uw3aw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jn8yo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qyv0q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qvg1f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y0y43")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7fd6l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p7aah")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_14o55")
+}],
+"loop": false,
+"name": &"explo",
+"speed": 15.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_02wpa"]
+radius = 12.0415945
+
 [node name="blue" type="CharacterBody2D" groups=["blue"]]
 collision_layer = 18
 collision_mask = 2
@@ -98,9 +201,23 @@ shape = SubResource("CircleShape2D_qe84c")
 stream = ExtResource("3_ydvue")
 
 [node name="delete" type="Timer" parent="."]
-wait_time = 3.0
 one_shot = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+visible = false
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_5fqdb")
+animation = &"explo"
+
+[node name="hurt" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hurt"]
+shape = SubResource("CircleShape2D_02wpa")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="area_entered" from="purple trigger" to="." method="_on_purple_trigger_area_entered"]
 [connection signal="timeout" from="delete" to="." method="_on_delete_timeout"]
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="body_entered" from="hurt" to="." method="_on_hurt_body_entered"]

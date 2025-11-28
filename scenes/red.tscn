@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://gl1m5wtrj3ri"]
+[gd_scene load_steps=27 format=3 uid="uid://gl1m5wtrj3ri"]
 
 [ext_resource type="Script" uid="uid://bmv54gbggj11h" path="res://scripts/red.gd" id="1_8flnf"]
 [ext_resource type="AudioStream" uid="uid://b88x6sii2xjkp" path="res://sounds/Gojo sounds/gojo-red-made-with-Voicemod.mp3" id="2_8flnf"]
+[ext_resource type="Texture2D" uid="uid://d27gihwo8ihvp" path="res://sprites/gojo/vecteezy_cartoon-sprite-sheet-of-star-explosion_24238370.png" id="3_vskon"]
 
 [sub_resource type="Animation" id="Animation_02wpa"]
 length = 0.001
@@ -58,6 +59,108 @@ glow_enabled = true
 [sub_resource type="CircleShape2D" id="CircleShape2D_10bml"]
 radius = 4.472136
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_hvrnj"]
+atlas = ExtResource("3_vskon")
+region = Rect2(0, 0, 274, 271)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o74wx"]
+atlas = ExtResource("3_vskon")
+region = Rect2(274, 0, 274, 271)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dikbc"]
+atlas = ExtResource("3_vskon")
+region = Rect2(548, 0, 274, 271)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f3133"]
+atlas = ExtResource("3_vskon")
+region = Rect2(822, 0, 274, 271)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3yxm2"]
+atlas = ExtResource("3_vskon")
+region = Rect2(1096, 0, 274, 271)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uw3aw"]
+atlas = ExtResource("3_vskon")
+region = Rect2(1370, 0, 274, 271)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jn8yo"]
+atlas = ExtResource("3_vskon")
+region = Rect2(1644, 0, 274, 271)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qyv0q"]
+atlas = ExtResource("3_vskon")
+region = Rect2(0, 271, 274, 271)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qvg1f"]
+atlas = ExtResource("3_vskon")
+region = Rect2(274, 271, 274, 271)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y0y43"]
+atlas = ExtResource("3_vskon")
+region = Rect2(548, 271, 274, 271)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7fd6l"]
+atlas = ExtResource("3_vskon")
+region = Rect2(822, 271, 274, 271)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p7aah"]
+atlas = ExtResource("3_vskon")
+region = Rect2(1096, 271, 274, 271)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_14o55"]
+atlas = ExtResource("3_vskon")
+region = Rect2(1370, 271, 274, 271)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hebyl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hvrnj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o74wx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dikbc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f3133")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3yxm2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uw3aw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jn8yo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qyv0q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qvg1f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y0y43")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7fd6l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p7aah")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_14o55")
+}],
+"loop": false,
+"name": &"explo",
+"speed": 15.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vskon"]
+radius = 12.0415945
+
 [node name="red" type="CharacterBody2D" groups=["red"]]
 texture_filter = 1
 collision_layer = 18
@@ -91,10 +194,6 @@ texture = SubResource("CompressedTexture2D_vskon")
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_hebyl")
 
-[node name="Timer2" type="Timer" parent="."]
-wait_time = 3.0
-one_shot = true
-
 [node name="move" type="Timer" parent="."]
 wait_time = 5.0
 one_shot = true
@@ -109,12 +208,22 @@ shape = SubResource("CircleShape2D_10bml")
 [node name="red" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("2_8flnf")
 
-[node name="delete" type="Timer" parent="."]
-wait_time = 2.0
-one_shot = true
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+visible = false
+modulate = Color(1, 0, 0, 1)
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_hebyl")
+animation = &"explo"
+
+[node name="hurt" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hurt"]
+shape = SubResource("CircleShape2D_vskon")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
-[connection signal="timeout" from="Timer2" to="." method="_on_timer_2_timeout"]
 [connection signal="timeout" from="move" to="." method="_on_move_timeout"]
 [connection signal="area_entered" from="purple trigger" to="." method="_on_purple_trigger_area_entered"]
-[connection signal="timeout" from="delete" to="." method="_on_delete_timeout"]
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="body_entered" from="hurt" to="." method="_on_hurt_body_entered"]
